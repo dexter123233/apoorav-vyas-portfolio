@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apoorav Vyas - Portfolio</title>
+    <title>Ray Svitla / webpage</title>
     <style>
         * {
             margin: 0;
@@ -259,6 +259,11 @@
             left: 30%;
         }
 
+        .icon-embassy {
+            top: 60%;
+            left: 70%;
+        }
+
         /* Sticky Note - 160px below navbar */
         .sticky-note {
             position: absolute;
@@ -343,7 +348,7 @@
             right: 0;
             background: linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8), rgba(0,0,0,0.6));
             backdrop-filter: blur(10px);
-            padding: 16px 0;
+            padding: 8px 0;
             z-index: 75;
             overflow: hidden;
         }
@@ -354,7 +359,7 @@
 
         .brag-content {
             display: flex;
-            gap: 48px;
+            gap: 24px;
             animation: brag-scroll 30s linear infinite;
             white-space: nowrap;
         }
@@ -364,22 +369,16 @@
             100% { transform: translateX(-50%); }
         }
 
-        .brag-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            color: white;
+        .brag-content img {
+            height: 32px;
+            width: auto;
             opacity: 0.9;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
+            transition: opacity 0.2s;
+            filter: brightness(0) invert(1);
         }
 
-        .brag-item::before {
-            content: '•';
-            color: #3b82f6;
+        .brag-content img:hover {
+            opacity: 1;
         }
 
         /* Modal */
@@ -560,11 +559,11 @@
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                 </svg>
-                <span>Apoorav Vyas</span>
+                <span>Ray Svitla</span>
             </a>
             <div class="nav-links">
-                <a href="https://t.me/apoorav_vyas">Contact</a>
-                <a href="https://drive.google.com/file/d/1LPTRgzza7MY0erxGTXN6rgeR57evoMco/view?usp=sharing">CV.pdf</a>
+                <a href="#contact-form">Contact</a>
+                <a href="https://freight.cargo.site/m/R2412332315276723527789498827877/RAY_SVITLA_CV.pdf">CV.pdf</a>
             </div>
         </div>
 
@@ -599,9 +598,10 @@
             <div class="folder-icon icon-about" onclick="openModal('about')">
                 <div class="icon-container">
                     <svg width="48" height="48" viewBox="0 0 100 100">
-                        <rect x="15" y="20" width="70" height="60" rx="5" fill="#0a0a0a" opacity="0.8"/>
-                        <rect x="20" y="25" width="60" height="35" rx="2" fill="#1a1a2e"/>
-                        <rect x="25" y="65" width="50" height="10" rx="2" fill="#3b82f6"/>
+                        <path d="M20 30 H80 V70 H40 L20 50 Z" fill="#fde047"/>
+                        <rect x="25" y="35" width="50" height="30" fill="#fef9c3"/>
+                        <rect x="30" y="40" width="40" height="5" fill="#f59e0b"/>
+                        <rect x="30" y="50" width="30" height="5" fill="#f59e0b"/>
                     </svg>
                 </div>
                 <span class="folder-text">about me.txt</span>
@@ -611,10 +611,10 @@
             <div class="folder-icon icon-pubs" onclick="openModal('pubs')">
                 <div class="icon-container">
                     <svg width="48" height="48" viewBox="0 0 100 100">
-                        <rect x="15" y="20" width="70" height="60" rx="8" fill="#3b82f6"/>
-                        <rect x="25" y="35" width="50" height="4" rx="2" fill="rgba(255,255,255,0.5)"/>
-                        <rect x="25" y="45" width="40" height="4" rx="2" fill="rgba(255,255,255,0.3)"/>
-                        <rect x="25" y="55" width="30" height="4" rx="2" fill="rgba(255,255,255,0.3)"/>
+                        <path d="M20 30 H80 V70 H40 L20 50 Z" fill="#3b82f6"/>
+                        <rect x="25" y="35" width="50" height="30" fill="#60a5fa"/>
+                        <rect x="30" y="40" width="40" height="5" fill="#3b82f6"/>
+                        <rect x="30" y="50" width="30" height="5" fill="#3b82f6"/>
                     </svg>
                 </div>
                 <span class="folder-text">publications</span>
@@ -624,24 +624,37 @@
             <div class="folder-icon icon-pow" onclick="openModal('pow')">
                 <div class="icon-container">
                     <svg width="48" height="48" viewBox="0 0 100 100">
-                        <rect x="15" y="20" width="70" height="60" rx="8" fill="#8b5cf6"/>
-                        <circle cx="50" cy="50" r="20" fill="rgba(255,255,255,0.2)"/>
-                        <path d="M40 50 L47 57 L60 43" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20 30 H80 V70 H40 L20 50 Z" fill="#8b5cf6"/>
+                        <rect x="25" y="35" width="50" height="30" fill="#a78bfa"/>
+                        <rect x="30" y="40" width="40" height="5" fill="#7c3aed"/>
+                        <rect x="30" y="50" width="30" height="5" fill="#7c3aed"/>
                     </svg>
                 </div>
                 <span class="folder-text">Proof of Work</span>
             </div>
 
+            <!-- Embassy -->
+            <div class="folder-icon icon-embassy" onclick="openModal('embassy')">
+                <div class="icon-container">
+                    <svg width="48" height="48" viewBox="0 0 100 100">
+                        <path d="M20 30 H80 V70 H40 L20 50 Z" fill="#1a1a1a"/>
+                        <rect x="25" y="35" width="50" height="30" fill="#333333"/>
+                        <rect x="30" y="40" width="40" height="5" fill="#1a1a1a"/>
+                        <rect x="30" y="50" width="30" height="5" fill="#1a1a1a"/>
+                    </svg>
+                </div>
+                <span class="folder-text">404 Embassy // newsletter</span>
+            </div>
+
             <!-- Sticky Note -->
             <div class="sticky-note">
-                <h1>Apoorav Vyas</h1>
-                <p class="subtitle">Founder & Operator at the intersection of Community / Distribution / Web3</p>
+            <h1>Ray Svitla</h1>
+            <p class="subtitle">Fractional CMO & Research Lead<br>for Network-State / Social-Fi / Web3</p>
                 <ul>
-                    <li>Built & scaled ecosystems across Solana, Base, Starknet</li>
-                    <li>Ran 15+ IRL activations — 1000+ builders engaged</li>
-                    <li>Outpost: $25K grants + builder residency + demo day pipeline</li>
-                    <li>Content + research → 80+ pieces across DeFi, SocialFi, infra</li>
-                    <li>Worked across ActualOne, Insidr, ecosystem partners globally</li>
+                    <li>80+ research features → 9 tier-1 clients</li>
+                    <li>WAKA: 100 K users, 10× cheaper CAC</li>
+                    <li>$25 M raised + $250 k grants</li>
+                    <li>7 events — 700 attendees — speakers: Vitalik Buterin • Patri Friedman etc.</li>
                 </ul>
                 <button class="book-btn" onclick="openModal('book')">
                     → Book 15 min intro
@@ -650,38 +663,36 @@
         </div>
     </section>
 
-    <!-- Brag Shelf - Carousel Marquee -->
-    <div class="brag-shelf">
-        <div class="brag-content">
-            <span class="brag-item">Base</span>
-            <span class="brag-item">Starknet</span>
-            <span class="brag-item">Solana</span>
-            <span class="brag-item">ActualOne</span>
-            <span class="brag-item">Insidr</span>
-            <span class="brag-item">Outpost</span>
-            <span class="brag-item">DeFi</span>
-            <span class="brag-item">Web3</span>
-            <span class="brag-item">Community</span>
-            <span class="brag-item">Distribution</span>
-            <span class="brag-item">Ecosystems</span>
-            <span class="brag-item">Builders</span>
-            <span class="brag-item">Innovation</span>
-            <!-- Duplicate for marquee -->
-            <span class="brag-item">Base</span>
-            <span class="brag-item">Starknet</span>
-            <span class="brag-item">Solana</span>
-            <span class="brag-item">ActualOne</span>
-            <span class="brag-item">Insidr</span>
-            <span class="brag-item">Outpost</span>
-            <span class="brag-item">DeFi</span>
-            <span class="brag-item">Web3</span>
-            <span class="brag-item">Community</span>
-            <span class="brag-item">Distribution</span>
-            <span class="brag-item">Ecosystems</span>
-            <span class="brag-item">Builders</span>
-            <span class="brag-item">Innovation</span>
+        <!-- Brag Shelf - Carousel Marquee -->
+        <div class="brag-shelf">
+            <div class="brag-content">
+                <img alt="Hacken" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png" />
+                <img alt="Blockchain.com" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png" />
+                <img alt="Rarimo" src="https://freight.cargo.site/t/original/i/D2452309144229793612845302383717/rarimo.png" />
+                <img alt="BDC Consulting" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png" />
+                <img alt="Investing.com" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png" />
+                <img alt="The Block" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png" />
+                <img alt="CoinsPaid" src="https://freight.cargo.site/t/original/i/B2452412272062256515326989796453/coinspaid.png" />
+                <img alt="Binance" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png" />
+                <img alt="Rocket DAO" src="https://freight.cargo.site/t/original/i/U2452422819301775308016188621925/rocketDAO.png" />
+                <img alt="EBRD" src="https://freight.cargo.site/t/original/i/B2452422819283328563942479070309/EBRD.png" />
+                <img alt="Cointelegraph" src="https://freight.cargo.site/t/original/i/M1653668736016096960125178446949/Group-1229.png" />
+                <img alt="John Smith Trust" src="https://freight.cargo.site/t/original/i/C1653629271457654035532061312101/Group-1231.png" />
+                <!-- Duplicate for marquee -->
+                <img alt="Hacken" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png" />
+                <img alt="Blockchain.com" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png" />
+                <img alt="Rarimo" src="https://freight.cargo.site/m/F2452302379882528759847563002981/rarimo.png" />
+                <img alt="BDC Consulting" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png" />
+                <img alt="Investing.com" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png" />
+                <img alt="The Block" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png" />
+                <img alt="CoinsPaid" src="https://freight.cargo.site/t/original/i/B2452412272062256515326989796453/coinspaid.png" />
+                <img alt="Binance" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png" />
+                <img alt="Rocket DAO" src="https://freight.cargo.site/t/original/i/U2452422819301775308016188621925/rocketDAO.png" />
+                <img alt="EBRD" src="https://freight.cargo.site/t/original/i/B2452422819283328563942479070309/EBRD.png" />
+                <img alt="Cointelegraph" src="https://freight.cargo.site/t/original/i/M1653668736016096960125178446949/Group-1229.png" />
+                <img alt="John Smith Trust" src="https://freight.cargo.site/t/original/i/C1653629271457654035532061312101/Group-1231.png" />
+            </div>
         </div>
-    </div>
 
     <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
@@ -754,97 +765,50 @@
             });
         });
 
-        // Modal Content
-        const modalContent = {
-            about: `
-                <h2>about me.txt</h2>
-                <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Apoorav Vyas</h3>
-                <p>Learning & Building new things everyday.</p>
-                <p>I specialise in product and market research for Web3 projects with strong experience designing and executing GTM strategies for various Web3 protocols.</p>
-                <p>Currently building <strong>ActualOne</strong> — a community and onboarding-based venture in the blockchain space.</p>
-                <p>Reach out: <a href="mailto:apoorav@apoorav.com" style="color:#3b9eff;">apoorav@apoorav.com</a></p>
-                <p><a href="https://linkedin.com/in/apooravvyas" target="_blank" style="color:#3b9eff;">linkedin.com/in/apooravvyas →</a></p>
-                <div class="tags">
-                    <span class="tag">Web3</span>
-                    <span class="tag">GTM</span>
-                    <span class="tag">Community</span>
-                    <span class="tag">DeFi</span>
-                    <span class="tag">Research</span>
-                    <span class="tag">Distribution</span>
-                </div>
-            `,
+            // Modal Content
+            const modalContent = {
+                about: `
+                    <h2>about me</h2>
+                    <div>Fractional CMO & Research Lead</div>
+                    <div>for Network-State / Social-Fi / Web3</div>
+                    <div>
+                        80+ research features → 9 tier-1 clients<br>
+                        WAKA: 100 K users, 10× cheaper CAC<br>
+                        $25 M raised + $250 k grants<br>
+                        7 events — 700 attendees — speakers: Vitalik Buterin • Patri Friedman etc.
+                    </div>
+                `,
             pow: `
                 <h2>Proof of Work</h2>
-                <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">Track Record</h3>
-                <ul style="list-style:none;padding:0;">
-                    <li style="margin-bottom:12px;">› Built & scaled ecosystems across Solana, Base, Starknet</li>
-                    <li style="margin-bottom:12px;">› Ran 15+ IRL activations — 1000+ builders engaged across events</li>
-                    <li style="margin-bottom:12px;">› Outpost: $25K grants + builder residency + active demo day pipeline</li>
-                    <li style="margin-bottom:12px;">› 80+ pieces of content & research — DeFi, SocialFi, infra verticals</li>
-                    <li style="margin-bottom:12px;">› Worked across ActualOne, Insidr, and ecosystem partners globally</li>
-                    <li style="margin-bottom:12px;">› Designed and executed GTM strategies for multiple Web3 protocols</li>
-                </ul>
-                <div class="tags">
-                    <span class="tag">Solana</span>
-                    <span class="tag">Base</span>
-                    <span class="tag">Starknet</span>
-                    <span class="tag">ActualOne</span>
-                    <span class="tag">Insidr</span>
-                    <span class="tag">Outpost</span>
+                <div>Fractional CMO & Research Lead</div>
+                <div>for Network-State / Social-Fi / Web3</div>
+                <div>
+                    80+ research features → 9 tier-1 clients<br>
+                    WAKA: 100 K users, 10× cheaper CAC<br>
+                    $25 M raised + $250 k grants<br>
+                    7 events — 700 attendees — speakers: Vitalik Buterin • Patri Friedman etc.
                 </div>
             `,
             pubs: `
                 <h2>publications</h2>
-                <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">Research & Content</h3>
-                <p>80+ pieces published across DeFi, SocialFi, and infrastructure verticals.</p>
-                <ul style="list-style:none;padding:0;">
-                    <li style="margin-bottom:12px;">› DeFi landscape analysis across major L1/L2 protocols</li>
-                    <li style="margin-bottom:12px;">› SocialFi ecosystem: On-chain social primitives & distribution loops</li>
-                    <li style="margin-bottom:12px;">› Infra deep dives: Developer tooling, indexers, RPC providers</li>
-                    <li style="margin-bottom:12px;">› GTM playbooks for Web3 consumer apps — community-led growth</li>
-                    <li style="margin-bottom:12px;">› Protocol research: Solana, Base, Starknet ecosystem reports</li>
-                </ul>
-                <div class="tags">
-                    <span class="tag">DeFi</span>
-                    <span class="tag">SocialFi</span>
-                    <span class="tag">Infrastructure</span>
-                    <span class="tag">Research</span>
-                    <span class="tag">GTM</span>
+                <div>Fractional CMO & Research Lead</div>
+                <div>for Network-State / Social-Fi / Web3</div>
+                <div>
+                    80+ research features → 9 tier-1 clients<br>
+                    WAKA: 100 K users, 10× cheaper CAC<br>
+                    $25 M raised + $250 k grants<br>
+                    7 events — 700 attendees — speakers: Vitalik Buterin • Patri Friedman etc.
                 </div>
+            `,
+            embassy: `
+                <h2>404 Embassy // newsletter</h2>
+                <p>don’t open 👀</p>
             `,
             book: `
                 <h2>Book 15 min intro</h2>
-                <form class="booking-form" onsubmit="submitBooking(event)">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Time</label>
-                        <select name="time" required>
-                            <option value="">Select time</option>
-                            <option value="09:00">9:00 AM</option>
-                            <option value="10:00">10:00 AM</option>
-                            <option value="11:00">11:00 AM</option>
-                            <option value="14:00">2:00 PM</option>
-                            <option value="15:00">3:00 PM</option>
-                            <option value="16:00">4:00 PM</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Message (optional)</label>
-                        <textarea name="message"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Confirm Booking</button>
-                </form>
+                <p>Fractional CMO & Research Lead</p>
+                <p>for Network-State / Social-Fi / Web3</p>
+                <button onclick="window.location.href='contact-form'">→ Book 15 min intro</button>
             `
         };
 
