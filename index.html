@@ -47,7 +47,7 @@
             left: 0;
             right: 0;
             height: 56px;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.42);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             display: flex;
@@ -754,7 +754,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Eye Tracking
+        // Eye Tracking - Enhanced to match svit.la behavior
         const eyes = document.querySelectorAll('.eye');
         const pupils = document.querySelectorAll('.pupil');
 
@@ -765,12 +765,16 @@
                 const eyeX = eyeRect.left + eyeRect.width / 2;
                 const eyeY = eyeRect.top + eyeRect.height / 2;
                 
+                // More responsive eye tracking like svit.la
                 const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
-                const distance = Math.min(10, Math.hypot(e.clientX - eyeX, e.clientY - eyeY) / 10);
+                const distance = Math.min(6, Math.hypot(e.clientX - eyeX, e.clientY - eyeY) / 15);
                 
+                // Add subtle damping for more natural movement
                 const pupilX = Math.cos(angle) * distance;
                 const pupilY = Math.sin(angle) * distance;
                 
+                // Smooth transition with CSS
+                pupil.style.transition = 'transform 0.05s ease-out';
                 pupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
             });
         });
