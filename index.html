@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apoorav Vyas / webpage</title>
+    <title>Apoorav Vyas / Webpage</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
@@ -20,10 +20,10 @@
         </div>
         <div class="menu-icons">
             <i class="ph-fill ph-eyes"></i>
-            <a href="https://x.com/apoorav_vyas" target="_blank"><i class="ph-fill ph-twitter-logo menu-ic"></i></a>
-            <a href="https://www.linkedin.com/in/apooravvyas/" target="_blank"><i class="ph-fill ph-linkedin-logo menu-ic"></i></a>
-            <a href="https://www.instagram.com/apoorav_vyas/" target="_blank"><i class="ph-fill ph-instagram-logo menu-ic"></i></a>
-            <a href="https://substack.com/@apoorav" target="_blank"><i class="ph-fill ph-spotify-logo menu-ic"></i></a>
+            <i class="ph-fill ph-twitter-logo menu-ic"></i>
+            <i class="ph-fill ph-linkedin-logo menu-ic"></i>
+            <i class="ph-fill ph-instagram-logo menu-ic"></i>
+            <i class="ph-fill ph-spotify-logo menu-ic"></i>
         </div>
         <div class="menu-right">
             <span id="clock">00:00:00</span>
@@ -41,26 +41,26 @@
                 <li><span class="arr">›</span> Currently developing ActualOne - blockchain community venture</li>
             </ul>
 
-            <button class="book-btn" onclick="openModal('book')">➔ Contact for collaborations</button>
+            <button class="book-btn">➔ Contact for collaborations</button>
         </div>
 
         <div class="icons-container">
-            <div class="desktop-icon draggable" style="top: 80px; left: 45%;" onclick="openModal('about')">
+            <div class="desktop-icon draggable" style="top: 80px; left: 45%;">
                 <div class="file-icon txt-icon">TXT</div>
                 <span class="icon-label">about me</span>
             </div>
 
-            <div class="desktop-icon draggable" style="top: 150px; right: 15%;" onclick="openModal('pubs')">
+            <div class="desktop-icon draggable" style="top: 150px; right: 15%;">
                 <div class="file-icon folder-icon"></div>
                 <span class="icon-label">publications</span>
             </div>
 
-            <div class="desktop-icon draggable" style="top: 380px; left: 40%;" onclick="openModal('pow')">
+            <div class="desktop-icon draggable" style="top: 380px; left: 40%;">
                 <div class="file-icon folder-icon"></div>
                 <span class="icon-label">Proof of Work</span>
             </div>
 
-            <div class="desktop-icon draggable" style="top: 550px; right: 15%;" onclick="openModal('embassy')">
+            <div class="desktop-icon draggable" style="top: 550px; right: 15%;">
                 <div class="file-icon snail-icon">
                     <img src="https://em-content.zobj.net/source/apple/354/snail_1f40c.png" alt="Snail" style="width:100px; height:100px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); transform: scaleX(-1);">
                 </div>
@@ -73,126 +73,15 @@
         <div class="dock-title">Brag Shelf // Press • Partners • Clients</div>
         <div class="dock">
             <div class="dock-logo">Hacken</div>
-            <div class="dock-logo">Blockchain</div>
+            <div class="dock-logo">Blockchain.com</div>
             <div class="dock-logo">Rarimo</div>
-            <div class="dock-logo">BDC</div>
+            <div class="dock-logo">BDC Consulting</div>
             <div class="dock-logo">Invest</div>
             <div class="dock-logo">The Block</div>
             <div class="dock-logo">Binance</div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-        <div class="modal" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div id="modalContent"></div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
-    <script>
-        const modalContent = {
-            about: `
-                <h2>about me</h2>
-                <p>Learning & Building new things everyday.</p>
-                <p>Product & Market Research for Web3 Projects</p>
-                <ul>
-                    <li>Specializes in product and market research for Web3 projects</li>
-                    <li>Experienced in designing and executing GTM strategies for various Web3 protocols</li>
-                    <li>Currently developing ActualOne - a community and onboarding based venture in blockchain space</li>
-                </ul>
-                <div style="margin-top: 20px;">
-                    <strong>Connect with me:</strong><br>
-                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
-                </div>
-            `,
-            pow: `
-                <h2>Proof of Work</h2>
-                <p>Product & Market Research for Web3 Projects</p>
-                <p>Specializing in Web3 protocol research and GTM strategies</p>
-                <ul>
-                    <li>Expert in product and market research for Web3 projects</li>
-                    <li>Experienced in designing and executing GTM strategies for various Web3 protocols</li>
-                    <li>Founder of ActualOne - community and onboarding venture in blockchain space</li>
-                </ul>
-                <div style="margin-top: 20px;">
-                    <strong>Connect with me:</strong><br>
-                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
-                </div>
-            `,
-            pubs: `
-                <h2>publications</h2>
-                <p>Product & Market Research for Web3 Projects</p>
-                <p>Sharing insights on Web3 trends and developments</p>
-                <ul>
-                    <li>Research publications on Web3 market trends</li>
-                    <li>Analysis of blockchain protocols and ecosystems</li>
-                    <li>Case studies on successful Web3 project launches</li>
-                </ul>
-                <div style="margin-top: 20px;">
-                    <strong>Connect with me:</strong><br>
-                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
-                </div>
-            `,
-            embassy: `
-                <h2>404 Embassy // newsletter</h2>
-                <p>don't open 👀</p>
-                <div style="margin-top: 20px;">
-                    <strong>Connect with me:</strong><br>
-                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
-                </div>
-            `,
-            book: `
-                <h2>Contact for Collaborations</h2>
-                <p>Product & Market Research for Web3 Projects</p>
-                <p>Specializing in Web3 protocol research and GTM strategies</p>
-                <div style="margin-top: 20px;">
-                    <strong>Connect with me:</strong><br>
-                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a> | 
-                    <a href="https://cal.com/apoorav" target="_blank">Book a Call</a>
-                </div>
-                <button class="book-btn" onclick="window.location.href='mailto:apoorav@actualone.xyz'">→ Email for collaborations</button>
-            `
-        };
-
-        function openModal(type) {
-            document.getElementById('modalContent').innerHTML = modalContent[type];
-            document.getElementById('modalOverlay').classList.add('active');
-        }
-
-        function closeModal(event) {
-            if (event && event.target !== event.currentTarget) return;
-            document.getElementById('modalOverlay').classList.remove('active');
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-    </script>
 </body>
 </html>

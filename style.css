@@ -11,11 +11,12 @@ body, html {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: #2a2222;
+    background: #2a2222; /* Fallback */
     color: #fff;
     user-select: none;
 }
 
+/* Video Background */
 .bg-video {
     position: absolute;
     top: 50%;
@@ -31,6 +32,7 @@ body, html {
     opacity: 0.8;
 }
 
+/* Menu Bar */
 .menubar {
     position: absolute;
     top: 0;
@@ -67,6 +69,7 @@ body, html {
     margin-right: 15px;
 }
 
+/* Special Icons in Menu */
 .menu-icons {
     position: absolute;
     left: 50%;
@@ -76,12 +79,9 @@ body, html {
     gap: 30px;
 }
 
-.menu-icons a {
-    color: white;
-}
-
 .ph-eyes { font-size: 20px; }
 
+/* Desktop Area */
 .desktop {
     width: 100%;
     height: calc(100vh - 28px);
@@ -89,6 +89,7 @@ body, html {
     position: relative;
 }
 
+/* Yellow Sticky Note */
 .sticky-card {
     position: absolute;
     left: 40px;
@@ -172,6 +173,7 @@ body, html {
     box-shadow: 1px 1px 0px rgba(0,0,0,1);
 }
 
+/* Desktop Icons */
 .desktop-icon {
     position: absolute;
     display: flex;
@@ -181,7 +183,6 @@ body, html {
     width: 100px;
     cursor: grab;
 }
-
 .desktop-icon:active {
     cursor: grabbing;
 }
@@ -190,6 +191,7 @@ body, html {
     margin-bottom: 4px;
 }
 
+/* CSS Drawn TXT Document Icon */
 .txt-icon {
     width: 60px;
     height: 80px;
@@ -217,6 +219,7 @@ body, html {
     border-radius: 0 4px 0 4px;
 }
 
+/* CSS Drawn Folder Icon */
 .folder-icon {
     width: 80px;
     height: 60px;
@@ -258,11 +261,7 @@ body, html {
     text-align: center;
 }
 
-.snail-icon {
-    width: 100px;
-    height: 100px;
-}
-
+/* Dock / Brag Shelf */
 .dock-container {
     position: absolute;
     bottom: 20px;
@@ -305,83 +304,4 @@ body, html {
     font-size: 12px;
     border-radius: 4px;
     text-transform: uppercase;
-}
-
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-overlay.active {
-    display: flex;
-}
-
-.modal {
-    background: white;
-    border-radius: 12px;
-    padding: 32px;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-    color: #0a0a0a;
-    position: relative;
-}
-
-.modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: #333;
-}
-
-.modal h2 {
-    font-size: 20px;
-    margin-bottom: 16px;
-}
-
-.modal p {
-    margin-bottom: 12px;
-    line-height: 1.6;
-}
-
-.modal ul {
-    margin: 16px 0;
-    padding-left: 20px;
-}
-
-.modal li {
-    margin-bottom: 8px;
-}
-
-.modal a {
-    color: #0066cc;
-    text-decoration: none;
-}
-
-.modal a:hover {
-    text-decoration: underline;
-}
-
-.modal .book-btn {
-    margin-top: 20px;
-    background: #0066cc;
-    color: white;
-    border-color: #0066cc;
-}
-
-.modal .book-btn:hover {
-    background: #0052a3;
-    color: white;
 }
