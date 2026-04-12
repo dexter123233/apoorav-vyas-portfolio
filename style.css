@@ -93,8 +93,9 @@ body, html {
 .sticky-card {
     position: absolute;
     left: 40px;
-    top: 100px;
-    width: 320px;
+    top: 120px;
+    width: 300px;
+    height: 400px;
     background-color: #fdf596;
     color: #1a1a1a;
     padding: 24px;
