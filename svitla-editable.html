@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name / webpage</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --bg-color: #111111;
+            --text-color: rgba(255, 255, 255, 0.85);
+            --sticky-yellow: #fef49c;
+            --brand-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--brand-font);
+            background: var(--bg-color);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* === EYES === */
+        .eyes-container {
+            position: fixed;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10000;
+        }
+        
+        .eye {
+            width: 28px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pupil {
+            width: 12px;
+            height: 12px;
+            background: #111;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.05s ease-out;
+        }
+        
+        /* === TOOLBAR === */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.42);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 9999;
+            font-size: 14px;
+        }
+        
+        .toolbar-left, .toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .toolbar a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        
+        .toolbar a:hover {
+            opacity: 0.6;
+        }
+        
+        .toolbar .brand {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .clock {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        /* === DESKTOP PAGE === */
+        .desktop {
+            min-height: 100vh;
+            padding-top: 44px;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        /* Background gradient change this to use an image or video */
+        .desktop {
+            background: #89f7e3;
+        }
+        
+        /* Sticky Note */
+        #sticky-note {
+            position: absolute;
+            top: 120px;
+            left: 40px;
+            width: 320px;
+            background: var(--sticky-yellow);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+            color: rgba(0,0,0,0.85);
+            transform: rotate(-1deg);
+        }
+        
+        #sticky-note h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        #sticky-note .subtitle {
+            font-size: 13px;
+            font-style: italic;
+            opacity: 0.8;
+            margin-bottom: 12px;
+        }
+        
+        #sticky-note ul {
+            list-style: none;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        #sticky-note li {
+            margin-bottom: 8px;
+        }
+        
+        .book-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid rgba(0,0,0,0.85);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .book-btn:hover {
+            background: #111;
+            color: white;
+        }
+        
+        /* Folder Icons - Freeform positioned */
+        .folder-icon {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        
+        .folder-icon:hover {
+            transform: scale(1.05);
+        }
+        
+        .folder-icon .icon-bg {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .folder-icon .folder-label {
+            color: white;
+            font-size: 11px;
+            text-align: center;
+            margin-top: 4px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        /* Folder colors */
+        .folder-about .icon-bg { background: linear-gradient(145deg, #fef9c3, #fde047); }
+        .folder-pubs .icon-bg { background: linear-gradient(145deg, #60a5fa, #3b82f6); }
+        .folder-pow .icon-bg { background: linear-gradient(145deg, #a78bfa, #7c3aed); }
+        .folder-embassy .icon-bg { background: linear-gradient(145deg, #374151, #1f2937); }
+        .folder-trash .icon-bg { background: #4b5563; }
+        
+        /* === LOGO MARQUEE === */
+        .logo-marquee-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 740px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px 24px;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .logo-marquee {
+            display: flex;
+            gap: 32px;
+            animation: scroll-logos 80s linear infinite;
+        }
+        
+        .logo-marquee img {
+            height: 32px;
+            filter: grayscale(100%) brightness(2);
+            opacity: 0.7;
+            transition: all 0.2s;
+        }
+        
+        .logo-marquee img:hover {
+            filter: none;
+            opacity: 1;
+        }
+        
+        @keyframes scroll-logos {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .logo-fade {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            z-index: 1001;
+            pointer-events: none;
+        }
+        
+        .left-fade { left: 0; background: linear-gradient(to right, rgba(24,24,24,0.3) 0%, transparent 100%); }
+        .right-fade { right: 0; background: linear-gradient(to left, rgba(24,24,24,0.3) 0%, transparent 100%); }
+        
+        .logo-heading {
+            position: fixed;
+            bottom: 68px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            z-index: 1001;
+            pointer-events: none;
+        }
+        
+        /* === MODAL === */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-overlay.active { display: flex; }
+        
+        .modal {
+            background: white;
+            color: #111;
+            padding: 32px;
+            border-radius: 12px;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal h2 { margin-bottom: 12px; }
+        .modal p { margin-bottom: 12px; line-height: 1.6; }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .toolbar { padding: 0 12px; font-size: 12px; }
+            #sticky-note { left: 12px; right: 12px; width: auto; top: 60px; }
+            .logo-marquee-wrapper { width: 95%; padding: 12px; }
+            .logo-marquee img { height: 24px; }
+            .eyes-container { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- EYES -->
+    <div class="eyes-container">
+        <div class="eye"><div class="pupil"></div></div>
+        <div class="eye"><div class="pupil"></div></div>
+    </div>
+    
+    <!-- TOOLBAR -->
+    <nav class="toolbar">
+        <div class="toolbar-left">
+            <a href="#" class="brand">Your Name</a>
+            <a href="#contact">Contact</a>
+            <a href="#" target="_blank">CV.pdf</a>
+        </div>
+        <div class="toolbar-right">
+            <a href="https://x.com/yourhandle" target="_blank">𝕏</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">in</a>
+            <a href="https://instagram.com/yourhandle" target="_blank">📷</a>
+            <a href="https://spotify.com/user/yourid" target="_blank">♫</a>
+            <span class="clock" id="clock">00:00:00</span>
+        </div>
+    </nav>
+    
+    <!-- DESKTOP PAGE -->
+    <div class="desktop">
+        <!-- Sticky Note - EDIT YOUR CONTENT HERE -->
+        <div id="sticky-note">
+            <h2>Your Title Here</h2>
+            <p class="subtitle">Your subtitle/tagline</p>
+            <ul>
+                <li>Your achievement or detail 1</li>
+                <li>Your achievement or detail 2</li>
+                <li>Your achievement or detail 3</li>
+            </ul>
+            <a href="#contact" class="book-btn">→ Contact / Book Call</a>
+        </div>
+        
+        <!-- Folder Icons - EDIT POSITIONS HERE -->
+        <!-- about folder -->
+        <div class="folder-icon folder-about" style="top: 140px; left: 50%; transform: translateX(-50%);" onclick="openModal('about')">
+            <div class="icon-bg">📁</div>
+            <div class="folder-label">about me</div>
+        </div>
+        
+        <!-- publications folder -->
+        <div class="folder-icon folder-pubs" style="top: 160px; right: 60px;" onclick="openModal('pubs')">
+            <div class="icon-bg">📄</div>
+            <div class="folder-label">publications</div>
+        </div>
+        
+        <!-- proof of work folder -->
+        <div class="folder-icon folder-pow" style="top: 45%; left: 25%;" onclick="openModal('pow')">
+            <div class="icon-bg">💼</div>
+            <div class="folder-label">Proof of Work</div>
+        </div>
+        
+        <!-- embassy / newsletter folder -->
+        <div class="folder-icon folder-embassy" style="top: 60%; right: 20%;" onclick="window.open('https://yournewsletter.substack.com', '_blank')">
+            <div class="icon-bg">📧</div>
+            <div class="folder-label">Newsletter</div>
+        </div>
+        
+        <!-- trash icon (easter egg) -->
+        <div class="folder-icon folder-trash" style="top: 70%; left: 10%; cursor: not-allowed;">
+            <div class="icon-bg">🗑️</div>
+            <div class="folder-label">don't open 👀</div>
+        </div>
+    </div>
+    
+    <!-- LOGO MARQUEE - EDIT LOGOS HERE -->
+    <div class="logo-marquee-wrapper">
+        <div class="logo-fade left-fade"></div>
+        <div class="logo-marquee">
+            <!-- Duplicate logos for infinite scroll effect -->
+            <img alt="Logo1" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png">
+            <img alt="Logo2" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png">
+            <img alt="Logo3" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png">
+            <img alt="Logo4" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png">
+            <img alt="Logo5" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png">
+            <img alt="Logo6" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png">
+            <!-- Duplicate for infinite scroll -->
+            <img alt="Logo1" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png">
+            <img alt="Logo2" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png">
+            <img alt="Logo3" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png">
+            <img alt="Logo4" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png">
+            <img alt="Logo5" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png">
+            <img alt="Logo6" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png">
+        </div>
+        <div class="logo-fade right-fade"></div>
+    </div>
+    
+    <div class="logo-heading">Brag Shelf // Press • Partners • Clients</div>
+    
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour12: false });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+        
+        // Eye Tracking
+        const pupils = document.querySelectorAll('.pupil');
+        document.addEventListener('mousemove', (e) => {
+            pupils.forEach(pupil => {
+                const eye = pupil.parentElement;
+                const rect = eye.getBoundingClientRect();
+                const eyeX = rect.left + rect.width / 2;
+                const eyeY = rect.top + rect.height / 2;
+                const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
+                const distance = Math.min(4, Math.hypot(e.clientX - eyeX, e.clientY - eyeY) / 20);
+                pupil.style.transform = `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px)`;
+            });
+        });
+        
+        // Modal Content - EDIT YOUR MODAL CONTENT HERE
+        const modalContent = {
+            about: `<h2>About Me</h2><p>Your bio goes here...</p>`,
+            pow: `<h2>Proof of Work</h2><p>Your work experience...</p>`,
+            pubs: `<h2>Publications</h2><p>Your publications...</p>`
+        };
+        
+        function openModal(type) {
+            document.getElementById('modalContent').innerHTML = modalContent[type] || '<p>Content coming soon...</p>';
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+        
+        function closeModal(e) {
+            if (!e || e.target === document.getElementById('modalOverlay')) {
+                document.getElementById('modalOverlay').classList.remove('active');
+            }
+        }
+        
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+</html>
