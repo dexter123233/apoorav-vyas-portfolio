@@ -595,58 +595,100 @@
     <section class="hero">
         <div class="desktop-container">
 <!-- About Me - Folder Icon -->
-             <div class="folder-icon icon-about" onclick="openModal('about')">
-                 <div class="icon-container">
-                     <svg width="48" height="48" viewBox="0 0 100 100">
-                         <!-- Person icon -->
-                         <circle cx="50" cy="35" r="20" fill="#fde047"/>
-                         <path d="M30 55 Q40 45 50 55 T70 55" stroke="#fef9c3" stroke-width="8" fill="none" stroke-linecap="round"/>
-                     </svg>
-                 </div>
-                 <span class="folder-text">about me</span>
-             </div>
+              <div class="folder-icon icon-about" onclick="openModal('about')">
+                  <div class="icon-container">
+                      <svg width="48" height="48" viewBox="0 0 100 100">
+                          <!-- 3D macOS folder style -->
+                          <defs>
+                              <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                  <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+                                  <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+                              </linearGradient>
+                          </defs>
+                          <!-- Folder base -->
+                          <path d="M20,30 L20,80 L70,80 L70,40 L50,20 L20,30 Z" fill="url(#folderGradient)" stroke="#3730a3" stroke-width="1.5"/>
+                          <!-- Folder flap -->
+                          <path d="M20,30 L50,20 L70,30" fill="url(#folderGradient)" stroke="#3730a3" stroke-width="1.5"/>
+                          <!-- Highlight -->
+                          <path d="M25,25 L45,15 L45,35 L25,45 Z" fill="rgba(255,255,255,0.15)"/>
+                          <!-- U-shaped notch -->
+                          <path d="M35,20 L40,15 L45,20" fill="rgba(0,0,0,0.2)"/>
+                      </svg>
+                  </div>
+                  <span class="folder-text">about me</span>
+              </div>
 
 <!-- Publications -->
-             <div class="folder-icon icon-pubs" onclick="openModal('pubs')">
-                 <div class="icon-container">
-                     <svg width="48" height="48" viewBox="0 0 100 100">
-                         <!-- Book icon -->
-                         <rect x="25" y="30" width="50" height="40" rx="5" fill="#3b82f6"/>
-                         <path d="M30 35 H40" stroke="#60a5fa" stroke-width="3"/>
-                         <path d="M30 42 H50" stroke="#60a5fa" stroke-width="3"/>
-                         <path d="M30 49 H45" stroke="#60a5fa" stroke-width="3"/>
-                     </svg>
-                 </div>
-                 <span class="folder-text">publications</span>
-             </div>
+              <div class="folder-icon icon-pubs" onclick="openModal('pubs')">
+                  <div class="icon-container">
+                      <svg width="48" height="48" viewBox="0 0 100 100">
+                          <!-- 3D macOS folder style -->
+                          <defs>
+                              <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                  <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+                                  <stop offset="100%" style="stop-color:#047857;stop-opacity:1" />
+                              </linearGradient>
+                          </defs>
+                          <!-- Folder base -->
+                          <path d="M20,30 L20,80 L70,80 L70,40 L50,20 L20,30 Z" fill="url(#folderGradient)" stroke="#036955" stroke-width="1.5"/>
+                          <!-- Folder flap -->
+                          <path d="M20,30 L50,20 L70,30" fill="url(#folderGradient)" stroke="#036955" stroke-width="1.5"/>
+                          <!-- Highlight -->
+                          <path d="M25,25 L45,15 L45,35 L25,45 Z" fill="rgba(255,255,255,0.15)"/>
+                          <!-- U-shaped notch -->
+                          <path d="M35,20 L40,15 L45,20" fill="rgba(0,0,0,0.2)"/>
+                      </svg>
+                  </div>
+                  <span class="folder-text">publications</span>
+              </div>
 
 <!-- Proof of Work -->
-             <div class="folder-icon icon-pow" onclick="openModal('pow')">
-                 <div class="icon-container">
-                     <svg width="48" height="48" viewBox="0 0 100 100">
-                         <!-- Trophy icon -->
-                         <path d="M50 15 L45 20 L40 20 L35 25 L30 25 L25 30 L20 30 L18 35 L18 45 L20 50 L30 50 L35 55 L40 55 L45 50 L55 50 L57 45 L57 35 L55 30 L50 25 Z" fill="#a78bfa"/>
-                         <path d="M50 10 L48 12 L44 12 L42 16 L38 16 L36 20 L32 20 L30 24 L28 24 L26 28 L24 28 L22 32 L20 32 L18 38 L18 48 L20 52 L30 52 L35 56 L40 56 L45 52 L55 52 L57 48 L57 38 L55 32 L53 28 L51 28 L49 24 L47 24 L45 20 L43 20 L41 16 L39 16 L37 12 L35 12 Z" fill="#7c3aed"/>
-                         <path d="M50 5 L52 7 L48 7 Z" fill="#a78bfa"/>
-                     </svg>
-                 </div>
-                 <span class="folder-text">Proof of Work</span>
-             </div>
+              <div class="folder-icon icon-pow" onclick="openModal('pow')">
+                  <div class="icon-container">
+                      <svg width="48" height="48" viewBox="0 0 100 100">
+                          <!-- 3D macOS folder style -->
+                          <defs>
+                              <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                  <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+                                  <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+                              </linearGradient>
+                          </defs>
+                          <!-- Folder base -->
+                          <path d="M20,30 L20,80 L70,80 L70,40 L50,20 L20,30 Z" fill="url(#folderGradient)" stroke="#5b21b6" stroke-width="1.5"/>
+                          <!-- Folder flap -->
+                          <path d="M20,30 L50,20 L70,30" fill="url(#folderGradient)" stroke="#5b21b6" stroke-width="1.5"/>
+                          <!-- Highlight -->
+                          <path d="M25,25 L45,15 L45,35 L25,45 Z" fill="rgba(255,255,255,0.15)"/>
+                          <!-- U-shaped notch -->
+                          <path d="M35,20 L40,15 L45,20" fill="rgba(0,0,0,0.2)"/>
+                      </svg>
+                  </div>
+                  <span class="folder-text">Proof of Work</span>
+              </div>
 
 <!-- Embassy -->
-             <div class="folder-icon icon-embassy" onclick="openModal('embassy')">
-                 <div class="icon-container">
-                     <svg width="48" height="48" viewBox="0 0 100 100">
-                         <!-- Building/embassy icon -->
-                         <rect x="25" y="30" width="50" height="40" rx="5" fill="#333333"/>
-                         <rect x="35" y="25" width="30" height="10" rx="2" fill="#1a1a1a"/>
-                         <rect x="30" y="20" width="40" height="5" rx="2" fill="#1a1a1a"/>
-                         <rect x="40" y="35" width="10" height="15" fill="#1a1a1a"/>
-                         <rect x="50" y="35" width="10" height="15" fill="#1a1a1a"/>
-                     </svg>
-                 </div>
-                 <span class="folder-text">404 Embassy // newsletter</span>
-             </div>
+              <div class="folder-icon icon-embassy" onclick="openModal('embassy')">
+                  <div class="icon-container">
+                      <svg width="48" height="48" viewBox="0 0 100 100">
+                          <!-- 3D macOS folder style -->
+                          <defs>
+                              <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                  <stop offset="0%" style="stop-color:#1f2937;stop-opacity:1" />
+                                  <stop offset="100%" style="stop-color:#374151;stop-opacity:1" />
+                              </linearGradient>
+                          </defs>
+                          <!-- Folder base -->
+                          <path d="M20,30 L20,80 L70,80 L70,40 L50,20 L20,30 Z" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
+                          <!-- Folder flap -->
+                          <path d="M20,30 L50,20 L70,30" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
+                          <!-- Highlight -->
+                          <path d="M25,25 L45,15 L45,35 L25,45 Z" fill="rgba(255,255,255,0.15)"/>
+                          <!-- U-shaped notch -->
+                          <path d="M35,20 L40,15 L45,20" fill="rgba(0,0,0,0.2)"/>
+                      </svg>
+                  </div>
+                  <span class="folder-text">404 Embassy // newsletter</span>
+              </div>
 
             <!-- Sticky Note -->
             <div class="sticky-note">
@@ -665,31 +707,35 @@
     </section>
 
 <!-- Brag Shelf - Carousel Marquee -->
-         <div class="brag-shelf">
-             <div class="brag-content">
-                 <img alt="ActualOne" src="https://via.placeholder.com/120x40/3b82f6/ffffff?text=ActualOne" />
-                 <img alt="Web3 Research" src="https://via.placeholder.com/120x40/8b5cf6/ffffff?text=Web3+Research" />
-                 <img alt="GTM Strategies" src="https://via.placeholder.com/120x40/fde047/000000?text=GTM+Strategies" />
-                 <img alt="Blockchain Ventures" src="https://via.placeholder.com/120x40/10b981/ffffff?text=Blockchain+Ventures" />
-                 <img alt="Community Building" src="https://via.placeholder.com/120x40/06b6d4/ffffff?text=Community+Building" />
-                 <img alt="Onboarding Solutions" src="https://via.placeholder.com/120x40/7c3aed/ffffff?text=Onboarding" />
-                 <img alt="Product Strategy" src="https://via.placeholder.com/120x40/059669/ffffff?text=Product+Strategy" />
-                 <img alt="Market Analysis" src="https://via.placeholder.com/120x40/d946ef/ffffff?text=Market+Analysis" />
-                 <img alt="Token Economics" src="https://via.placeholder.com/120x40/006d77/ffffff?text=Token+Economics" />
-                 <img alt="DeFi Projects" src="https://via.placeholder.com/120x40/ef4444/ffffff?text=DeFi+Projects" />
-                 <!-- Duplicate for marquee -->
-                 <img alt="ActualOne" src="https://via.placeholder.com/120x40/3b82f6/ffffff?text=ActualOne" />
-                 <img alt="Web3 Research" src="https://via.placeholder.com/120x40/8b5cf6/ffffff?text=Web3+Research" />
-                 <img alt="GTM Strategies" src="https://via.placeholder.com/120x40/fde047/000000?text=GTM+Strategies" />
-                 <img alt="Blockchain Ventures" src="https://via.placeholder.com/120x40/10b981/ffffff?text=Blockchain+Ventures" />
-                 <img alt="Community Building" src="https://via.placeholder.com/120x40/06b6d4/ffffff?text=Community+Building" />
-                 <img alt="Onboarding Solutions" src="https://via.placeholder.com/120x40/7c3aed/ffffff?text=Onboarding" />
-                 <img alt="Product Strategy" src="https://via.placeholder.com/120x40/059669/ffffff?text=Product+Strategy" />
-                 <img alt="Market Analysis" src="https://via.placeholder.com/120x40/d946ef/ffffff?text=Market+Analysis" />
-                 <img alt="Token Economics" src="https://via.placeholder.com/120x40/006d77/ffffff?text=Token+Economics" />
-                 <img alt="DeFi Projects" src="https://via.placeholder.com/120x40/ef4444/ffffff?text=DeFi+Projects" />
-             </div>
-         </div>
+          <div class="brag-shelf">
+              <div class="brag-content">
+                  <img alt="Hacken" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png" />
+                  <img alt="Blockchain.com" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png" />
+                  <img alt="Rarimo" src="https://freight.cargo.site/m/F2452302379882528759847563002981/rarimo.png" />
+                  <img alt="BDC Consulting" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png" />
+                  <img alt="Investing.com" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png" />
+                  <img alt="The Block" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png" />
+                  <img alt="CoinsPaid" src="https://freight.cargo.site/t/original/i/B2452412272062256515326989796453/coinspaid.png" />
+                  <img alt="Binance" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png" />
+                  <img alt="Rocket DAO" src="https://freight.cargo.site/t/original/i/U2452422819301775308016188621925/rocketDAO.png" />
+                  <img alt="EBRD" src="https://freight.cargo.site/t/original/i/B2452422819283328563942479070309/EBRD.png" />
+                  <img alt="Cointelegraph" src="https://freight.cargo.site/t/original/i/M1653668736016096960125178446949/Group-1229.png" />
+                  <img alt="John Smith Trust" src="https://freight.cargo.site/t/original/i/C1653629271457654035532061312101/Group-1231.png" />
+                  <!-- Duplicate for marquee -->
+                  <img alt="Hacken" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png" />
+                  <img alt="Blockchain.com" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png" />
+                  <img alt="Rarimo" src="https://freight.cargo.site/m/F2452302379882528759847563002981/rarimo.png" />
+                  <img alt="BDC Consulting" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png" />
+                  <img alt="Investing.com" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png" />
+                  <img alt="The Block" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png" />
+                  <img alt="CoinsPaid" src="https://freight.cargo.site/t/original/i/B2452412272062256515326989796453/coinspaid.png" />
+                  <img alt="Binance" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png" />
+                  <img alt="Rocket DAO" src="https://freight.cargo.site/t/original/i/U2452422819301775308016188621925/rocketDAO.png" />
+                  <img alt="EBRD" src="https://freight.cargo.site/t/original/i/B2452422819283328563942479070309/EBRD.png" />
+                  <img alt="Cointelegraph" src="https://freight.cargo.site/t/original/i/M1653668736016096960125178446949/Group-1229.png" />
+                  <img alt="John Smith Trust" src="https://freight.cargo.site/t/original/i/C1653629271457654035532061312101/Group-1231.png" />
+              </div>
+          </div>
 
     <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
