@@ -4,780 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apoorav Vyas / webpage</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f0f23;
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Background Video */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-
-        .video-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 15, 35, 0.5);
-            z-index: 0;
-        }
-
-        /* Navbar - Translucent dark black */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 56px;
-            background: rgba(0, 0, 0, 0.42);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 32px;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500;
-            font-size: 16px;
-        }
-
-        .brand svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            opacity: 0.8;
-            transition: opacity 0.2s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.6;
-        }
-
-        /* Eyes */
-        .eyes-container {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 16px;
-        }
-
-        .eye {
-            width: 36px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pupil {
-            width: 14px;
-            height: 14px;
-            background: #0f0f23;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: transform 0.05s;
-        }
-
-        /* Right section */
-        .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 160px;
-        }
-
-        .social-icons a {
-            color: white;
-            opacity: 0.8;
-            transition: all 0.2s;
-        }
-
-        .social-icons a:hover {
-            opacity: 0.6;
-            transform: scale(1.1);
-        }
-
-        .social-icons svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .clock {
-            font-family: 'Courier New', monospace;
-            font-size: 13px;
-            opacity: 0.8;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            padding-top: 56px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Desktop Icons Container */
-        .desktop-container {
-            position: relative;
-            min-height: calc(100vh - 56px);
-            padding: 20px;
-        }
-
-        /* Folder Icon Styling */
-        .folder-icon {
-            display: flex;
-            flex-direction: column; /* Stack icon and text */
-            align-items: center; /* Center items */
-            position: absolute;
-            cursor: grab;
-            transition: transform 0.1s;
-            z-index: 10;
-        }
-
-        .folder-icon:active {
-            cursor: grabbing;
-        }
-
-        .folder-icon.dragging {
-            opacity: 0.8;
-            z-index: 1000;
-        }
-
-        .folder-icon .icon-container {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.2);
-            transition: transform 0.15s, box-shadow 0.15s;
-        }
-
-        .folder-icon:hover .icon-container {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.3);
-        }
-
-        .folder-icon svg {
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        .folder-text {
-            color: white; /* Text color */
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Drop shadow */
-            font-size: 14px; /* Adjust font size as needed */
-            text-align: center; /* Center the text */
-            margin-top: 5px; /* Space between icon and text */
-        }
-
-        /* Icon specific backgrounds - svit.la gray style */
-        .icon-about .icon-container,
-        .icon-pubs .icon-container,
-        .icon-pow .icon-container,
-        .icon-embassy .icon-container,
-        .trash-icon .icon-container {
-            background: linear-gradient(145deg, #3a3a3a, #1a1a1a);
-        }
-
-        /* Icon Positions */
-        .icon-about {
-            top: 140px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .icon-pubs {
-            top: 160px;
-            right: 60px;
-        }
-
-        .icon-pow {
-            top: 45%;
-            left: 25%;
-        }
-
-        .icon-embassy {
-            top: 60%;
-            right: 20%;
-        }
-
-        .trash-icon {
-            top: 70%;
-            left: 10%;
-            cursor: not-allowed;
-        }
-
-        .trash-icon:hover {
-            animation: trash-shake 0.45s ease-in-out both;
-        }
-
-        .trash-icon .folder-text {
-            opacity: 0;
-            transition: opacity 0.25s;
-        }
-
-        .trash-icon:hover .folder-text {
-            opacity: 1;
-        }
-
-        @keyframes trash-shake {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-8deg); }
-            75% { transform: rotate(8deg); }
-        }
-
-        /* Sticky Note - 160px below navbar */
-        .sticky-note {
-            position: absolute;
-            left: 40px;
-            top: 216px;
-            width: 340px;
-            background: #ffe14d;
-            padding: 28px;
-            border-radius: 8px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            z-index: 100;
-            transform: rotate(-1deg);
-        }
-
-        .sticky-note h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #0a0a0a;
-            line-height: 1.2;
-        }
-
-        .sticky-note .subtitle {
-            font-size: 15px;
-            font-style: italic;
-            color: #333;
-            margin-top: 4px;
-        }
-
-        .sticky-note ul {
-            margin-top: 24px;
-            list-style: none;
-        }
-
-        .sticky-note li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            color: #0a0a0a;
-        }
-
-        .sticky-note li::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: #0a0a0a;
-            border-radius: 50%;
-            flex-shrink: 0;
-            margin-top: 6px;
-        }
-
-        .book-btn {
-            width: 100%;
-            height: 48px;
-            background: transparent;
-            border: 2px solid #0a0a0a;
-            border-radius: 4px;
-            font-size: 15px;
-            font-weight: 600;
-            color: #0a0a0a;
-            cursor: pointer;
-            margin-top: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-
-        .book-btn:hover {
-            background: #0a0a0a;
-            color: #ffe14d;
-        }
-
-        /* Brag Shelf - Carousel Marquee */
-        .brag-shelf {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8), rgba(0,0,0,0.6));
-            backdrop-filter: blur(10px);
-            padding: 8px 0;
-            z-index: 75;
-            overflow: hidden;
-        }
-
-        .brag-shelf:hover .brag-content {
-            animation-play-state: paused;
-        }
-
-        .brag-content {
-            display: flex;
-            gap: 24px;
-            animation: brag-scroll 30s linear infinite;
-            white-space: nowrap;
-        }
-
-        @keyframes brag-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .brag-content img {
-            height: 32px;
-            width: auto;
-            opacity: 0.9;
-            transition: opacity 0.2s;
-            filter: brightness(0) invert(1);
-        }
-
-        .brag-content img:hover {
-            opacity: 1;
-        }
-
-        /* Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: white;
-            border-radius: 12px;
-            padding: 32px;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            color: #0a0a0a;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            font-size: 24px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: #333;
-        }
-
-        .modal h2 {
-            font-size: 20px;
-            margin-bottom: 16px;
-        }
-
-        .modal p {
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-
-        .modal ul {
-            margin: 16px 0;
-            padding-left: 20px;
-        }
-
-        .modal li {
-            margin-bottom: 8px;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .tag {
-            background: #f3f4f6;
-            border: 1px solid #e5e7eb;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        /* Form */
-        .booking-form {
-            max-width: 400px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-
-        .form-group textarea {
-            height: 100px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: #3b9eff;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .submit-btn:hover {
-            background: #2563eb;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0 16px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .eyes-container {
-                display: none;
-            }
-
-            .social-icons {
-                gap: 20px;
-            }
-
-            .sticky-note {
-                left: 16px;
-                right: 16px;
-                width: auto;
-                top: 80px;
-            }
-
-            .desktop-icon {
-                transform: scale(0.8);
-            }
-
-            .icon-pow {
-                left: 20%;
-            }
-
-            .brag-item {
-                font-size: 12px;
-                padding: 6px 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
-    <!-- Background Video -->
-    <video class="video-background" autoplay loop muted playsinline>
+    <video autoplay loop muted playsinline class="bg-video">
         <source src="Bg_Video.mp4" type="video/mp4">
     </video>
-    <div class="video-overlay"></div>
-    <div class="video-overlay"></div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-left">
-            <a href="/" class="brand">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                </svg>
-                <span>Apoorav Vyas</span>
-            </a>
-            <div class="nav-links">
-                <a href="#contact-form">Contact</a>
-                <a href="https://drive.google.com/file/d/1LPTRgzza7MY0erxGTXN6rgeR57evoMco/view?usp=sharing" target="_blank">View Resume</a>
-            </div>
+    <nav class="menubar">
+        <div class="menu-left">
+            <span class="logo">🌐 Apoorav Vyas</span>
+            <a href="#contact-form">Contact</a>
+            <a href="https://drive.google.com/file/d/1LPTRgzza7MY0erxGTXN6rgeR57evoMco/view?usp=sharing" target="_blank">View Resume</a>
         </div>
-
-        <div class="eyes-container">
-            <div class="eye"><div class="pupil"></div></div>
-            <div class="eye"><div class="pupil"></div></div>
+        <div class="menu-icons">
+            <i class="ph-fill ph-eyes"></i>
+            <a href="https://x.com/apoorav_vyas" target="_blank"><i class="ph-fill ph-twitter-logo menu-ic"></i></a>
+            <a href="https://www.linkedin.com/in/apooravvyas/" target="_blank"><i class="ph-fill ph-linkedin-logo menu-ic"></i></a>
+            <a href="https://www.instagram.com/apoorav_vyas/" target="_blank"><i class="ph-fill ph-instagram-logo menu-ic"></i></a>
+            <a href="https://substack.com/@apoorav" target="_blank"><i class="ph-fill ph-spotify-logo menu-ic"></i></a>
         </div>
-
-        <div class="navbar-right">
-            <div class="social-icons">
-                <a href="https://x.com/apoorav_vyas" target="_blank" aria-label="Twitter">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/apooravvyas/" target="_blank" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-                <a href="https://www.instagram.com/apoorav_vyas/" target="_blank" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </a>
-                <a href="https://substack.com/@apoorav" target="_blank" aria-label="Substack">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
-                </a>
-            </div>
-            <div class="clock" id="clock">00:00:00</div>
+        <div class="menu-right">
+            <span id="clock">00:00:00</span>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="desktop-container">
-<!-- About Me - Folder Icon -->
-              <div class="folder-icon icon-about" onclick="openModal('about')">
-                  <div class="icon-container">
-                      <svg width="48" height="48" viewBox="0 0 100 100">
-                          <!-- 3D macOS folder style -->
-                          <defs>
-                              <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                  <stop offset="0%" style="stop-color:#3a3a3a;stop-opacity:1" />
-                                  <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
-                              </linearGradient>
-                          </defs>
-                          <!-- Folder base -->
-                          <path d="M20,30 L20,80 L70,80 L70,40 L50,20 L20,30 Z" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
-                          <!-- Folder flap -->
-                          <path d="M20,30 L50,20 L70,30" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
-                          <!-- Highlight -->
-                          <path d="M25,25 L45,15 L45,35 L25,45 Z" fill="rgba(255,255,255,0.15)"/>
-                          <!-- U-shaped notch -->
-                          <path d="M35,20 L40,15 L45,20" fill="rgba(0,0,0,0.2)"/>
-                      </svg>
-                  </div>
-                  <span class="folder-text">about me</span>
-              </div>
+    <main class="desktop">
+        <div class="sticky-card draggable" id="sticky">
+            <h1>Product & Market Research</h1>
+            <p class="subtitle">for Web3 Projects</p>
+            
+            <ul class="achievements">
+                <li><span class="arr">›</span> Specializes in product and market research for Web3 projects</li>
+                <li><span class="arr">›</span> Experienced in designing and executing GTM strategies</li>
+                <li><span class="arr">›</span> Currently developing ActualOne - blockchain community venture</li>
+            </ul>
 
-<!-- Publications -->
-              <div class="folder-icon icon-pubs" onclick="openModal('pubs')">
-                  <div class="icon-container">
-                      <svg width="48" height="48" viewBox="0 0 100 100">
-                          <!-- 3D macOS folder style -->
-                          <defs>
-                              <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                  <stop offset="0%" style="stop-color:#3a3a3a;stop-opacity:1" />
-                                  <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
-                              </linearGradient>
-                          </defs>
-                          <!-- Folder base -->
-                          <path d="M20,30 L20,80 L70,80 L70,40 L50,20 L20,30 Z" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
-                          <!-- Folder flap -->
-                          <path d="M20,30 L50,20 L70,30" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
-                          <!-- Highlight -->
-                          <path d="M25,25 L45,15 L45,35 L25,45 Z" fill="rgba(255,255,255,0.15)"/>
-                          <!-- U-shaped notch -->
-                          <path d="M35,20 L40,15 L45,20" fill="rgba(0,0,0,0.2)"/>
-                      </svg>
-                  </div>
-                  <span class="folder-text">publications</span>
-              </div>
+            <button class="book-btn" onclick="openModal('book')">➔ Contact for collaborations</button>
+        </div>
 
-<!-- Proof of Work -->
-              <div class="folder-icon icon-pow" onclick="openModal('pow')">
-                  <div class="icon-container">
-                      <svg width="48" height="48" viewBox="0 0 100 100">
-                          <!-- 3D macOS folder style -->
-                          <defs>
-                              <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                  <stop offset="0%" style="stop-color:#3a3a3a;stop-opacity:1" />
-                                  <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
-                              </linearGradient>
-                          </defs>
-                          <!-- Folder base -->
-                          <path d="M20,30 L20,80 L70,80 L70,40 L50,20 L20,30 Z" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
-                          <!-- Folder flap -->
-                          <path d="M20,30 L50,20 L70,30" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
-                          <!-- Highlight -->
-                          <path d="M25,25 L45,15 L45,35 L25,45 Z" fill="rgba(255,255,255,0.15)"/>
-                          <!-- U-shaped notch -->
-                          <path d="M35,20 L40,15 L45,20" fill="rgba(0,0,0,0.2)"/>
-                      </svg>
-                  </div>
-                  <span class="folder-text">Proof of Work</span>
-              </div>
+        <div class="icons-container">
+            <div class="desktop-icon draggable" style="top: 80px; left: 45%;" onclick="openModal('about')">
+                <div class="file-icon txt-icon">TXT</div>
+                <span class="icon-label">about me</span>
+            </div>
 
-<!-- Embassy -->
-              <div class="folder-icon icon-embassy" onclick="openModal('embassy')">
-                  <div class="icon-container">
-                      <svg width="48" height="48" viewBox="0 0 100 100">
-                          <!-- 3D macOS folder style -->
-                          <defs>
-                              <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                  <stop offset="0%" style="stop-color:#1f2937;stop-opacity:1" />
-                                  <stop offset="100%" style="stop-color:#374151;stop-opacity:1" />
-                              </linearGradient>
-                          </defs>
-                          <!-- Folder base -->
-                          <path d="M20,30 L20,80 L70,80 L70,40 L50,20 L20,30 Z" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
-                          <!-- Folder flap -->
-                          <path d="M20,30 L50,20 L70,30" fill="url(#folderGradient)" stroke="#111827" stroke-width="1.5"/>
-                          <!-- Highlight -->
-                          <path d="M25,25 L45,15 L45,35 L25,45 Z" fill="rgba(255,255,255,0.15)"/>
-                          <!-- U-shaped notch -->
-                          <path d="M35,20 L40,15 L45,20" fill="rgba(0,0,0,0.2)"/>
-                      </svg>
-                  </div>
-                  <span class="folder-text">404 Embassy // newsletter</span>
-              </div>
+            <div class="desktop-icon draggable" style="top: 150px; right: 15%;" onclick="openModal('pubs')">
+                <div class="file-icon folder-icon"></div>
+                <span class="icon-label">publications</span>
+            </div>
 
-              <!-- Trash Icon -->
-              <div class="folder-icon trash-icon" style="top: 70%; left: 10%; cursor: not-allowed;" onclick="this.classList.add('trash-shake'); setTimeout(() => this.classList.remove('trash-shake'), 450); alert('don\\'t open 👀')">
-                  <div class="icon-container">
-                      <svg width="48" height="48" viewBox="0 0 100 100">
-                          <defs>
-                              <linearGradient id="trashGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                  <stop offset="0%" style="stop-color:#4b5563;stop-opacity:1" />
-                                  <stop offset="100%" style="stop-color:#1f2937;stop-opacity:1" />
-                              </linearGradient>
-                          </defs>
-                          <!-- Trash body -->
-                          <path d="M25,25 L75,25 L70,85 L30,85 Z" fill="url(#trashGradient)" stroke="#111827" stroke-width="1.5"/>
-                          <!-- Trash lid -->
-                          <rect x="20" y="18" width="60" height="8" rx="2" fill="#6b7280" stroke="#374151" stroke-width="1"/>
-                          <!-- Handle -->
-                          <rect x="40" y="12" width="20" height="6" rx="1" fill="#9ca3af"/>
-                          <!-- Lines -->
-                          <line x1="38" y1="40" x2="38" y2="70" stroke="#9ca3af" stroke-width="2"/>
-                          <line x1="50" y1="40" x2="50" y2="70" stroke="#9ca3af" stroke-width="2"/>
-                          <line x1="62" y1="40" x2="62" y2="70" stroke="#9ca3af" stroke-width="2"/>
-                      </svg>
-                  </div>
-                  <span class="folder-text">don't open 👀</span>
-              </div>
+            <div class="desktop-icon draggable" style="top: 380px; left: 40%;" onclick="openModal('pow')">
+                <div class="file-icon folder-icon"></div>
+                <span class="icon-label">Proof of Work</span>
+            </div>
 
-            <!-- Sticky Note -->
-            <div class="sticky-note">
-<h1>Apoorav Vyas</h1>
-             <p class="subtitle">Learning & Building new things everyday.<br>Product & Market Research for Web3 Projects</p>
-                 <ul>
-                     <li>Specializes in product and market research for Web3 projects</li>
-                     <li>Experienced in designing and executing GTM strategies for various Web3 protocols</li>
-                     <li>Currently developing ActualOne - a community and onboarding based venture in blockchain space</li>
-                 </ul>
-                 <button class="book-btn" onclick="openModal('book')">
-                     → Contact for collaborations
-                 </button>
+            <div class="desktop-icon draggable" style="top: 550px; right: 15%;" onclick="openModal('embassy')">
+                <div class="file-icon snail-icon">
+                    <img src="https://em-content.zobj.net/source/apple/354/snail_1f40c.png" alt="Snail" style="width:100px; height:100px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); transform: scaleX(-1);">
+                </div>
+                <span class="icon-label">404 Embassy //<br>newsletter</span>
             </div>
         </div>
-    </section>
+    </main>
 
-    <div class="logo-heading">Brag Shelf // Press • Partners • Clients</div>
+    <div class="dock-container">
+        <div class="dock-title">Brag Shelf // Press • Partners • Clients</div>
+        <div class="dock">
+            <div class="dock-logo">Hacken</div>
+            <div class="dock-logo">Blockchain</div>
+            <div class="dock-logo">Rarimo</div>
+            <div class="dock-logo">BDC</div>
+            <div class="dock-logo">Invest</div>
+            <div class="dock-logo">The Block</div>
+            <div class="dock-logo">Binance</div>
+        </div>
+    </div>
 
-<!-- Brag Shelf - Carousel Marquee -->
-          <div class="brag-shelf">
-              <div class="brag-content">
-                  <img alt="Hacken" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png" />
-                  <img alt="Blockchain.com" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png" />
-                  <img alt="Rarimo" src="https://freight.cargo.site/m/F2452302379882528759847563002981/rarimo.png" />
-                  <img alt="BDC Consulting" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png" />
-                  <img alt="Investing.com" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png" />
-                  <img alt="The Block" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png" />
-                  <img alt="CoinsPaid" src="https://freight.cargo.site/t/original/i/B2452412272062256515326989796453/coinspaid.png" />
-                  <img alt="Binance" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png" />
-                  <img alt="Rocket DAO" src="https://freight.cargo.site/t/original/i/U2452422819301775308016188621925/rocketDAO.png" />
-                  <img alt="EBRD" src="https://freight.cargo.site/t/original/i/B2452422819283328563942479070309/EBRD.png" />
-                  <img alt="Cointelegraph" src="https://freight.cargo.site/t/original/i/M1653668736016096960125178446949/Group-1229.png" />
-                  <img alt="John Smith Trust" src="https://freight.cargo.site/t/original/i/C1653629271457654035532061312101/Group-1231.png" />
-                  <!-- Duplicate for marquee -->
-                  <img alt="Hacken" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png" />
-                  <img alt="Blockchain.com" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png" />
-                  <img alt="Rarimo" src="https://freight.cargo.site/m/F2452302379882528759847563002981/rarimo.png" />
-                  <img alt="BDC Consulting" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png" />
-                  <img alt="Investing.com" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png" />
-                  <img alt="The Block" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png" />
-                  <img alt="CoinsPaid" src="https://freight.cargo.site/t/original/i/B2452412272062256515326989796453/coinspaid.png" />
-                  <img alt="Binance" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png" />
-                  <img alt="Rocket DAO" src="https://freight.cargo.site/t/original/i/U2452422819301775308016188621925/rocketDAO.png" />
-                  <img alt="EBRD" src="https://freight.cargo.site/t/original/i/B2452422819283328563942479070309/EBRD.png" />
-                  <img alt="Cointelegraph" src="https://freight.cargo.site/t/original/i/M1653668736016096960125178446949/Group-1229.png" />
-                  <img alt="John Smith Trust" src="https://freight.cargo.site/t/original/i/C1653629271457654035532061312101/Group-1231.png" />
-              </div>
-          </div>
-
-    <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -785,184 +89,110 @@
         </div>
     </div>
 
+    <script src="script.js"></script>
     <script>
-        // Clock
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour12: false });
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Eye Tracking - Enhanced to match svit.la behavior
-        const eyes = document.querySelectorAll('.eye');
-        const pupils = document.querySelectorAll('.pupil');
-
-        document.addEventListener('mousemove', (e) => {
-            pupils.forEach((pupil, index) => {
-                const eye = eyes[index];
-                const eyeRect = eye.getBoundingClientRect();
-                const eyeX = eyeRect.left + eyeRect.width / 2;
-                const eyeY = eyeRect.top + eyeRect.height / 2;
-                
-                // More responsive eye tracking like svit.la
-                const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
-                const distance = Math.min(6, Math.hypot(e.clientX - eyeX, e.clientY - eyeY) / 15);
-                
-                // Add subtle damping for more natural movement
-                const pupilX = Math.cos(angle) * distance;
-                const pupilY = Math.sin(angle) * distance;
-                
-                // Smooth transition with CSS
-                pupil.style.transition = 'transform 0.05s ease-out';
-                pupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
-            });
-        });
-
-        // Drag and Drop for Folder Icons
-        const folderIcons = document.querySelectorAll('.folder-icon');
-
-        folderIcons.forEach(icon => {
-            let isDragging = false;
-            let startX, startY, initialX, initialY;
-
-            icon.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                icon.classList.add('dragging');
-                startX = e.clientX;
-                startY = e.clientY;
-                initialX = icon.offsetLeft;
-                initialY = icon.offsetTop;
-            });
-
-            document.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                const dx = e.clientX - startX;
-                const dy = e.clientY - startY;
-                icon.style.left = `${initialX + dx}px`;
-                icon.style.top = `${initialY + dy}px`;
-                icon.style.transform = 'none';
-            });
-
-            document.addEventListener('mouseup', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    icon.classList.remove('dragging');
-                }
-            });
-        });
-
-// Modal Content
-              const modalContent = {
-                  about: `
-                      <h2>about me</h2>
-                      <div>Learning & Building new things everyday</div>
-                      <div>Product & Market Research for Web3 Projects</div>
-                      <div>
-                          Specializes in product and market research for Web3 projects<br>
-                          Experienced in designing and executing GTM strategies for various Web3 protocols<br>
-                          Currently developing ActualOne - a community and onboarding based venture in blockchain space
-                      </div>
-                      <div style="margin-top: 20px;">
-                          <strong>Connect with me:</strong><br>
-                          <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                          <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                          <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                          <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                          <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                          <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
-                      </div>
-                  `,
-              pow: `
-                  <h2>Proof of Work</h2>
-                  <div>Product & Market Research for Web3 Projects</div>
-                  <div>Specializing in Web3 protocol research and GTM strategies</div>
-                  <div>
-                      Expert in product and market research for Web3 projects<br>
-                      Experienced in designing and executing GTM strategies for various Web3 protocols<br>
-                      Founder of ActualOne - community and onboarding venture in blockchain space
-                  </div>
-                  <div style="margin-top: 20px;">
-                      <strong>Connect with me:</strong><br>
-                      <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                      <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                      <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                      <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                      <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                      <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
-                  </div>
-              `,
-              pubs: `
-                  <h2>publications</h2>
-                  <div>Product & Market Research for Web3 Projects</div>
-                  <div>Sharing insights on Web3 trends and developments</div>
-                  <div>
-                      Research publications on Web3 market trends<br>
-                      Analysis of blockchain protocols and ecosystems<br>
-                      Case studies on successful Web3 project launches
-                  </div>
-                  <div style="margin-top: 20px;">
-                      <strong>Connect with me:</strong><br>
-                      <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                      <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                      <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                      <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                      <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                      <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
-                  </div>
-              `,
-              embassy: `
-                  <h2>404 Embassy // newsletter</h2>
-                  <p>don’t open 👀</p>
-                  <div style="margin-top: 20px;">
-                      <strong>Connect with me:</strong><br>
-                      <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                      <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                      <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                      <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                      <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                      <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
-                  </div>
-              `,
-             book: `
-                 <h2>Contact for Collaborations</h2>
-                 <p>Product & Market Research for Web3 Projects</p>
-                 <p>Specializing in Web3 protocol research and GTM strategies</p>
-                 <div style="margin-top: 20px;">
-                      <strong>Connect with me:</strong><br>
-                      <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
-                      <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
-                      <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
-                      <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
-                      <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
-                      <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a> | 
-                      <a href="https://cal.com/apoorav" target="_blank">Book a Call</a>
-                  </div>
-                  <button onclick="window.location.href='mailto:[email protected]'>→ Email for collaborations</button>
-             `
-         };
+        const modalContent = {
+            about: `
+                <h2>about me</h2>
+                <p>Learning & Building new things everyday.</p>
+                <p>Product & Market Research for Web3 Projects</p>
+                <ul>
+                    <li>Specializes in product and market research for Web3 projects</li>
+                    <li>Experienced in designing and executing GTM strategies for various Web3 protocols</li>
+                    <li>Currently developing ActualOne - a community and onboarding based venture in blockchain space</li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <strong>Connect with me:</strong><br>
+                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
+                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
+                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
+                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
+                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
+                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
+                </div>
+            `,
+            pow: `
+                <h2>Proof of Work</h2>
+                <p>Product & Market Research for Web3 Projects</p>
+                <p>Specializing in Web3 protocol research and GTM strategies</p>
+                <ul>
+                    <li>Expert in product and market research for Web3 projects</li>
+                    <li>Experienced in designing and executing GTM strategies for various Web3 protocols</li>
+                    <li>Founder of ActualOne - community and onboarding venture in blockchain space</li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <strong>Connect with me:</strong><br>
+                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
+                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
+                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
+                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
+                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
+                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
+                </div>
+            `,
+            pubs: `
+                <h2>publications</h2>
+                <p>Product & Market Research for Web3 Projects</p>
+                <p>Sharing insights on Web3 trends and developments</p>
+                <ul>
+                    <li>Research publications on Web3 market trends</li>
+                    <li>Analysis of blockchain protocols and ecosystems</li>
+                    <li>Case studies on successful Web3 project launches</li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <strong>Connect with me:</strong><br>
+                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
+                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
+                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
+                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
+                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
+                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
+                </div>
+            `,
+            embassy: `
+                <h2>404 Embassy // newsletter</h2>
+                <p>don't open 👀</p>
+                <div style="margin-top: 20px;">
+                    <strong>Connect with me:</strong><br>
+                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
+                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
+                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
+                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
+                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
+                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a>
+                </div>
+            `,
+            book: `
+                <h2>Contact for Collaborations</h2>
+                <p>Product & Market Research for Web3 Projects</p>
+                <p>Specializing in Web3 protocol research and GTM strategies</p>
+                <div style="margin-top: 20px;">
+                    <strong>Connect with me:</strong><br>
+                    <a href="https://linkedin.com/in/apooravvyas" target="_blank">LinkedIn</a> | 
+                    <a href="https://twitter.com/apoorav_vyas" target="_blank">Twitter</a> | 
+                    <a href="https://instagram.com/apoorav_vyas" target="_blank">Instagram</a><br>
+                    <a href="https://t.me/apoorav_vyas" target="_blank">Telegram</a> | 
+                    <a href="https://apoorav.substack.com" target="_blank">Newsletter</a> | 
+                    <a href="https://lu.ma/user/apoorav_vyas" target="_blank">Events</a> | 
+                    <a href="https://cal.com/apoorav" target="_blank">Book a Call</a>
+                </div>
+                <button class="book-btn" onclick="window.location.href='mailto:apoorav@actualone.xyz'">→ Email for collaborations</button>
+            `
+        };
 
         function openModal(type) {
             document.getElementById('modalContent').innerHTML = modalContent[type];
             document.getElementById('modalOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
         }
 
         function closeModal(event) {
             if (event && event.target !== event.currentTarget) return;
             document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = '';
         }
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
-
-        function submitBooking(e) {
-            e.preventDefault();
-            alert('Thank you! Your booking request has been sent. Apoorav will contact you soon.');
-            closeModal();
-        }
     </script>
 </body>
 </html>
