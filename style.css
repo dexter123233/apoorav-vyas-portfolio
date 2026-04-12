@@ -52,10 +52,10 @@ body, html {
     border-bottom: 0.5px solid rgba(255,255,255,0.1);
 }
 
-.menu-left, .menu-icons, .menu-right {
+.menu-left, .menu-right {
     display: flex;
     align-items: center;
-    gap: 160px;
+    gap: 60px;
 }
 
 .menubar a, .logo {
@@ -66,21 +66,21 @@ body, html {
 
 .logo {
     font-weight: 600;
-    margin-right: 15px;
 }
 
-/* Special Icons in Menu */
-.menu-icons {
+/* Menu Icons */
+.menu-right {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     font-size: 18px;
     color: white;
-    gap: 40px;
+    gap: 50px;
+    padding-left: 30px;
 }
 
-.menu-icons .menu-ic {
-    margin: 0 20px;
+.menu-right .menu-ic {
+    cursor: pointer;
 }
 
 .globe-tilt {
