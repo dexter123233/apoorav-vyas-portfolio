@@ -74,12 +74,46 @@ body, html {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 16px;
+    font-size: 18px;
     color: white;
-    gap: 160px;
+    gap: 40px;
 }
 
-.ph-eyes { font-size: 20px; }
+.menu-icons .menu-ic {
+    margin: 0 20px;
+}
+
+.globe-tilt {
+    transform: rotate(-15deg);
+}
+
+/* Eye Container */
+.eye-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.eye {
+    width: 36px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.pupil {
+    width: 14px;
+    height: 14px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s ease-out;
+}
 
 /* Desktop Area */
 .desktop {

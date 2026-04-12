@@ -7,6 +7,27 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
+// Eye tracking
+const eyes = document.querySelectorAll('.eye');
+const pupils = document.querySelectorAll('.pupil');
+
+document.addEventListener('mousemove', (e) => {
+    pupils.forEach((pupil, index) => {
+        const eye = eyes[index];
+        const eyeRect = eye.getBoundingClientRect();
+        const eyeX = eyeRect.left + eyeRect.width / 2;
+        const eyeY = eyeRect.top + eyeRect.height / 2;
+        
+        const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
+        const distance = Math.min(6, Math.hypot(e.clientX - eyeX, e.clientY - eyeY) / 15);
+        
+        const pupilX = Math.cos(angle) * distance;
+        const pupilY = Math.sin(angle) * distance;
+        
+        pupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
+    });
+});
+
 // Make elements draggable
 function makeDraggable(element) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
