@@ -117,8 +117,8 @@ body, html {
 /* Desktop Area */
 .desktop {
     width: 100%;
-    height: calc(100vh - 44px);
-    margin-top: 44px;
+    height: calc(100vh - 36px);
+    margin-top: 36px;
     position: relative;
 }
 
