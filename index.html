@@ -68,9 +68,11 @@
     .nav-spacer { flex: 1; }
 
     .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       align-items: center;
-      flex-shrink: 0;
     }
 
     .letterboxd-eyes {
@@ -136,12 +138,21 @@
 
   <div class="nav-spacer"></div>
 
-  <div class="nav-center">
-    <div class="letterboxd-eyes">
-      <div class="eye"><div class="pupil"></div></div>
-      <div class="eye"><div class="pupil"></div></div>
-    </div>
-  </div>
+   <div class="nav-center">
+     <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" width="120" height="60">
+       <!-- Left eye -->
+       <ellipse cx="30" cy="30" rx="18" ry="22" fill="white" stroke="#222" stroke-width="2"/>
+       <ellipse cx="30" cy="30" rx="10" ry="13" fill="#111"/>
+       <ellipse cx="30" cy="30" rx="5" ry="6.5" fill="#000"/>
+       <circle cx="34" cy="25" r="3" fill="white"/>
+
+       <!-- Right eye -->
+       <ellipse cx="90" cy="30" rx="18" ry="22" fill="white" stroke="#222" stroke-width="2"/>
+       <ellipse cx="90" cy="30" rx="10" ry="13" fill="#111"/>
+       <ellipse cx="90" cy="30" rx="5" ry="6.5" fill="#000"/>
+       <circle cx="94" cy="25" r="3" fill="white"/>
+     </svg>
+   </div>
 
   <div class="gap-eyes-twitter"></div>
 
@@ -237,37 +248,17 @@
     </div>
 </div>
 
-<script>
-  function updateClock() {
-    const now = new Date();
-    const h = String(now.getHours()).padStart(2, '0');
-    const m = String(now.getMinutes()).padStart(2, '0');
-    const s = String(now.getSeconds()).padStart(2, '0');
-    document.getElementById('clock').textContent = `${h}:${m}:${s}`;
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
-
-  const eyes = document.querySelectorAll('.eye');
-  const pupils = document.querySelectorAll('.pupil');
-
-  document.addEventListener('mousemove', (e) => {
-    pupils.forEach((pupil, index) => {
-      const eye = eyes[index];
-      const rect = eye.getBoundingClientRect();
-      const eyeX = rect.left + rect.width / 2;
-      const eyeY = rect.top + rect.height / 2;
-      
-      const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
-      const dist = Math.min(4, Math.hypot(e.clientX - eyeX, e.clientY - eyeY) / 20);
-      
-      const px = Math.cos(angle) * dist;
-      const py = Math.sin(angle) * dist;
-      
-      pupil.style.transform = `translate(calc(-50% + ${px}px), calc(-50% + ${py}px))`;
-    });
-  });
-</script>
+   <script>
+   function updateClock() {
+     const now = new Date();
+     const h = String(now.getHours()).padStart(2, '0');
+     const m = String(now.getMinutes()).padStart(2, '0');
+     const s = String(now.getSeconds()).padStart(2, '0');
+     document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+   }
+   updateClock();
+   setInterval(updateClock, 1000);
+   </script>
 <script src="script.js"></script>
 </body>
 </html>
