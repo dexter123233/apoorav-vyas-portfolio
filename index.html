@@ -138,21 +138,21 @@
 
   <div class="nav-spacer"></div>
 
-   <div class="nav-center">
-     <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" width="120" height="60">
-       <!-- Left eye -->
-       <ellipse cx="30" cy="30" rx="18" ry="22" fill="white" stroke="#222" stroke-width="2"/>
-       <ellipse cx="30" cy="30" rx="10" ry="13" fill="#111"/>
-       <ellipse cx="30" cy="30" rx="5" ry="6.5" fill="#000"/>
-       <circle cx="34" cy="25" r="3" fill="white"/>
+    <div class="nav-center">
+      <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" width="120" height="60">
+        <!-- Left eye -->
+        <ellipse cx="30" cy="30" rx="18" ry="22" fill="white" stroke="#222" stroke-width="2"/>
+        <ellipse cx="30" cy="30" rx="10" ry="13" fill="#111"/>
+        <ellipse id="leftPupil" cx="30" cy="30" rx="5" ry="6.5" fill="#000"/>
+        <circle id="leftHighlight" cx="34" cy="25" r="3" fill="white"/>
 
-       <!-- Right eye -->
-       <ellipse cx="90" cy="30" rx="18" ry="22" fill="white" stroke="#222" stroke-width="2"/>
-       <ellipse cx="90" cy="30" rx="10" ry="13" fill="#111"/>
-       <ellipse cx="90" cy="30" rx="5" ry="6.5" fill="#000"/>
-       <circle cx="94" cy="25" r="3" fill="white"/>
-     </svg>
-   </div>
+        <!-- Right eye -->
+        <ellipse cx="90" cy="30" rx="18" ry="22" fill="white" stroke="#222" stroke-width="2"/>
+        <ellipse cx="90" cy="30" rx="10" ry="13" fill="#111"/>
+        <ellipse id="rightPupil" cx="90" cy="30" rx="5" ry="6.5" fill="#000"/>
+        <circle id="rightHighlight" cx="94" cy="25" r="3" fill="white"/>
+      </svg>
+    </div>
 
   <div class="gap-eyes-twitter"></div>
 
@@ -258,7 +258,48 @@
    }
    updateClock();
    setInterval(updateClock, 1000);
-   </script>
-<script src="script.js"></script>
+    </script>
+    <script>
+    // Make eyes follow cursor
+    document.addEventListener('mousemove', (e) => {
+      const svg = document.querySelector('.nav-center svg');
+      if (!svg) return;
+      
+      const rect = svg.getBoundingClientRect();
+      const svgX = rect.left + rect.width / 2;
+      const svgY = rect.top + rect.height / 2;
+      
+      // Calculate angle from center of SVG to mouse
+      const angle = Math.atan2(e.clientY - svgY, e.clientX - svgX);
+      
+      // Maximum movement distance for pupils (in SVG coordinates)
+      const maxMove = 3; // Adjust this value to change how far pupils can move
+      
+      // Calculate pupil offset
+      const offsetX = Math.cos(angle) * maxMove;
+      const offsetY = Math.sin(angle) * maxMove;
+      
+      // Apply to both pupils
+      const leftPupil = document.getElementById('leftPupil');
+      const rightPupil = document.getElementById('rightPupil');
+      const leftHighlight = document.getElementById('leftHighlight');
+      const rightHighlight = document.getElementById('rightHighlight');
+      
+      if (leftPupil && rightPupil) {
+        // Move pupils
+        leftPupil.setAttribute('cx', 30 + offsetX);
+        leftPupil.setAttribute('cy', 30 + offsetY);
+        rightPupil.setAttribute('cx', 90 + offsetX);
+        rightPupil.setAttribute('cy', 30 + offsetY);
+        
+        // Move highlights to stay relative to pupils
+        leftHighlight.setAttribute('cx', 34 + offsetX);
+        leftHighlight.setAttribute('cy', 25 + offsetY);
+        rightHighlight.setAttribute('cx', 94 + offsetX);
+        rightHighlight.setAttribute('cy', 25 + offsetY);
+      }
+    });
+    </script>
+ <script src="script.js"></script>
 </body>
 </html>
