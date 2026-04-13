@@ -137,12 +137,10 @@
   <div class="nav-spacer"></div>
 
   <div class="nav-center">
-    <svg class="letterboxd-eyes" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="13" cy="13" r="12" fill="none" stroke="white" stroke-width="1.8"/>
-      <circle cx="13" cy="13" r="5.5" fill="white"/>
-      <circle cx="39" cy="13" r="12" fill="none" stroke="white" stroke-width="1.8"/>
-      <circle cx="39" cy="13" r="5.5" fill="white"/>
-    </svg>
+    <div class="letterboxd-eyes">
+      <div class="eye"><div class="pupil"></div></div>
+      <div class="eye"><div class="pupil"></div></div>
+    </div>
   </div>
 
   <div class="gap-eyes-twitter"></div>
@@ -249,6 +247,26 @@
   }
   updateClock();
   setInterval(updateClock, 1000);
+
+  const eyes = document.querySelectorAll('.eye');
+  const pupils = document.querySelectorAll('.pupil');
+
+  document.addEventListener('mousemove', (e) => {
+    pupils.forEach((pupil, index) => {
+      const eye = eyes[index];
+      const rect = eye.getBoundingClientRect();
+      const eyeX = rect.left + rect.width / 2;
+      const eyeY = rect.top + rect.height / 2;
+      
+      const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
+      const dist = Math.min(4, Math.hypot(e.clientX - eyeX, e.clientY - eyeY) / 20);
+      
+      const px = Math.cos(angle) * dist;
+      const py = Math.sin(angle) * dist;
+      
+      pupil.style.transform = `translate(calc(-50% + ${px}px), calc(-50% + ${py}px))`;
+    });
+  });
 </script>
 <script src="script.js"></script>
 </body>
