@@ -44,12 +44,15 @@
       z-index: 1000;
     }
 
-    .nav-left, .nav-right {
+    .nav-left, .nav-center, .nav-right {
       display: flex;
       align-items: center;
-      flex-shrink: 0;
       gap: 160px;
     }
+
+    .nav-left { flex-shrink: 0; }
+    .nav-center { flex-shrink: 0; }
+    .nav-right { flex-shrink: 0; }
 
     .brand {
       display: flex;
@@ -82,10 +85,7 @@
       opacity: 0.6;
     }
 
-    .nav-center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+    .eye-container {
       display: flex;
       align-items: center;
       gap: 0.05px;
@@ -110,13 +110,6 @@
       left: 50%;
       transform: translate(-50%, -50%);
       transition: transform 0.05s ease-out;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-      gap: 16px;
     }
 
     .social-icon {
@@ -505,11 +498,11 @@
   </div>
 
   <div class="nav-center">
-    <div class="eye"><div class="pupil"></div></div>
-    <div class="eye"><div class="pupil"></div></div>
+    <div class="eye-container">
+      <div class="eye"><div class="pupil"></div></div>
+      <div class="eye"><div class="pupil"></div></div>
+    </div>
   </div>
-
-  <div style="flex: 1; min-width: 160px;"></div>
 
   <div class="nav-right">
     <a href="https://x.com/apoorav_vyas" target="_blank" class="social-icon" title="X">
