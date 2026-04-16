@@ -6,24 +6,36 @@
   <title>Apoorav Vyas / Webpage</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://type.cargo.site/files/Cargo-DiatypePlusVariable.woff2') format('woff2-variations');
+    @import url('https://type.cargo.site/files/Cargo-DiatypePlusVariable-Italic.woff2') format('woff2-variations');
+
+    :root {
+      --bg-color: #111111;
+      --text-color: rgba(255, 255, 255, 0.85);
+      --accent-color: rgba(255, 255, 255, 0.6);
+    }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: #1a1a1a;
-      font-family: 'DM Mono', monospace;
+      background: var(--bg-color);
+      font-family: 'Diatype Variable', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-variation-settings: "wght" 350;
+      color: var(--text-color);
       min-height: 100vh;
     }
 
     nav {
       width: 100%;
-      background: #000;
+      background: rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       display: flex;
       align-items: center;
-      padding: 0 0.94%;
-      height: 39px;
-      font-size: 13px;
+      padding: 0 24px;
+      height: 44px;
+      font-size: 14px;
       color: #fff;
       position: fixed;
       top: 0;
@@ -35,34 +47,38 @@
       display: flex;
       align-items: center;
       flex-shrink: 0;
+      gap: 16px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       text-decoration: none;
       color: #fff;
-      font-weight: 500;
-      font-size: 13px;
+      font-weight: 600;
+      font-size: 14px;
       white-space: nowrap;
     }
 
     .brand svg {
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       flex-shrink: 0;
       transform: rotate(-15deg);
     }
 
-    .nav-contact { margin-left: 47px; }
-    .nav-cv      { margin-left: 98px; }
-
     .nav-link {
       color: #fff;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 14px;
       white-space: nowrap;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover {
+      opacity: 0.6;
     }
 
     .nav-spacer { flex: 1; }
@@ -73,22 +89,39 @@
       transform: translateX(-50%);
       display: flex;
       align-items: center;
+      gap: 12px;
     }
 
-    .letterboxd-eyes {
-      width: 40px;
+    .eye {
+      width: 28px;
       height: 20px;
-      display: block;
+      background: white;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
     }
 
-    .gap-eyes-twitter  { width: 10.34vw; flex-shrink: 0; }
-    .gap-social        { width:  7.87vw; flex-shrink: 0; }
-    .gap-spotify-clock { width:  4.56vw; flex-shrink: 0; }
+    .eye .pupil {
+      width: 12px;
+      height: 12px;
+      background: #111;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s ease-out;
+    }
+
+    .gap-eyes-twitter  { width: 80px; flex-shrink: 0; }
+    .gap-social        { width:  60px; flex-shrink: 0; }
+    .gap-spotify-clock { width:  40px; flex-shrink: 0; }
 
     .nav-right {
       display: flex;
       align-items: center;
       flex-shrink: 0;
+      gap: 16px;
     }
 
     .social-icon {
@@ -97,27 +130,255 @@
       flex-shrink: 0;
       color: #fff;
       text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .social-icon:hover {
+      opacity: 0.6;
     }
 
     .social-icon svg {
-      width: 13px;
-      height: 13px;
+      width: 14px;
+      height: 14px;
       fill: #fff;
     }
 
     .clock {
-      font-size: 13px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 12px;
       letter-spacing: 0.04em;
       white-space: nowrap;
       flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .desktop {
+      min-height: 100vh;
+      padding-top: 44px;
+      position: relative;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -100;
+      opacity: 0.6;
+    }
+
+    .sticky-card {
+      position: absolute;
+      left: 40px;
+      top: 120px;
+      width: 320px;
+      background: #fdf596;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 4px 4px 20px rgba(0,0,0,0.3);
+      color: rgba(0,0,0,0.85);
+      transform: rotate(-1deg);
+    }
+
+    .sticky-card h1 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .sticky-card .subtitle {
+      font-size: 14px;
+      font-style: italic;
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    .achievements {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .achievements li {
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .arr {
+      background: rgba(0,0,0,0.1);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .book-btn {
+      width: 100%;
+      padding: 12px;
+      background: #fff;
+      border: 2px solid rgba(0,0,0,0.85);
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      color: rgba(0,0,0,0.85);
+    }
+
+    .book-btn:hover {
+      background: #111;
+      color: #fff;
+    }
+
+    .desktop-icon {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .desktop-icon:hover {
+      transform: scale(1.05);
+    }
+
+    .file-icon {
+      margin-bottom: 4px;
+    }
+
+    .txt-icon {
+      width: 60px;
+      height: 80px;
+      background: #fff;
+      border-radius: 4px;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .txt-icon::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-width: 0 20px 20px 0;
+      border-style: solid;
+      border-color: transparent #e0e0e0 #e0e0e0 transparent;
+      border-radius: 0 4px 0 4px;
+    }
+
+    .folder-icon {
+      width: 70px;
+      height: 50px;
+      background: linear-gradient(145deg, #60a5fa, #3b82f6);
+      border-radius: 8px;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .folder-icon::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 0;
+      width: 30px;
+      height: 12px;
+      background: #60a5fa;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .icon-label {
+      color: white;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 6px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .snail-icon {
+      width: 80px;
+      height: 80px;
+    }
+
+    .snail-icon img {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+    }
+
+    .dock-container {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 900;
+    }
+
+    .dock-title {
+      font-size: 13px;
+      margin-bottom: 12px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    }
+
+    .dock {
+      background: rgba(50, 60, 60, 0.4);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 12px 24px;
+      border-radius: 16px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .dock-logo {
+      background: rgba(255,255,255,0.9);
+      color: #1a1a1a;
+      height: 36px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 12px; font-size: 12px; }
+      .gap-eyes-twitter, .gap-social, .gap-spotify-clock { display: none; }
+      .sticky-card { left: 12px; right: 12px; width: auto; top: 60px; }
+      .nav-center { display: none; }
     }
   </style>
 </head>
 <body>
-
-<video autoplay loop muted playsinline class="bg-video">
-  <source src="Bg_Video.mp4" type="video/mp4">
-</video>
 
 <nav>
 
@@ -139,19 +400,8 @@
   <div class="nav-spacer"></div>
 
     <div class="nav-center">
-      <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" width="120" height="60">
-        <!-- Left eye -->
-        <ellipse cx="30" cy="30" rx="18" ry="22" fill="white" stroke="#222" stroke-width="2"/>
-        <ellipse cx="30" cy="30" rx="10" ry="13" fill="#111"/>
-        <ellipse id="leftPupil" cx="30" cy="30" rx="5" ry="6.5" fill="#000"/>
-        <circle id="leftHighlight" cx="34" cy="25" r="3" fill="white"/>
-
-        <!-- Right eye -->
-        <ellipse cx="90" cy="30" rx="18" ry="22" fill="white" stroke="#222" stroke-width="2"/>
-        <ellipse cx="90" cy="30" rx="10" ry="13" fill="#111"/>
-        <ellipse id="rightPupil" cx="90" cy="30" rx="5" ry="6.5" fill="#000"/>
-        <circle id="rightHighlight" cx="94" cy="25" r="3" fill="white"/>
-      </svg>
+      <div class="eye"><div class="pupil"></div></div>
+      <div class="eye"><div class="pupil"></div></div>
     </div>
 
   <div class="gap-eyes-twitter"></div>
@@ -197,7 +447,11 @@
 </nav>
 
 <main class="desktop">
-    <div class="sticky-card draggable" id="sticky">
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="Bg_Video.mp4" type="video/mp4">
+    </video>
+
+    <div class="sticky-card" id="sticky">
         <h1>Product & Market Research</h1>
         <p class="subtitle">for Web3 Projects</p>
         
@@ -207,31 +461,29 @@
             <li><span class="arr">›</span> Currently developing ActualOne - blockchain community venture</li>
         </ul>
 
-        <button class="book-btn">➔ Contact for collaborations</button>
+        <a href="#contact" class="book-btn">→ Contact for collaborations</a>
     </div>
 
-    <div class="icons-container">
-        <div class="desktop-icon draggable" style="top: 80px; left: 45%;">
-            <div class="file-icon txt-icon">TXT</div>
-            <span class="icon-label">about me</span>
-        </div>
+    <div class="desktop-icon" style="top: 80px; left: 50%; transform: translateX(-50%);">
+        <div class="txt-icon">TXT</div>
+        <span class="icon-label">about me</span>
+    </div>
 
-        <div class="desktop-icon draggable" style="top: 150px; right: 15%;">
-            <div class="file-icon folder-icon"></div>
-            <span class="icon-label">publications</span>
-        </div>
+    <div class="desktop-icon" style="top: 160px; right: 60px;">
+        <div class="folder-icon"></div>
+        <span class="icon-label">publications</span>
+    </div>
 
-        <div class="desktop-icon draggable" style="top: 380px; left: 40%;">
-            <div class="file-icon folder-icon"></div>
-            <span class="icon-label">Proof of Work</span>
-        </div>
+    <div class="desktop-icon" style="top: 45%; left: 25%;">
+        <div class="folder-icon" style="background: linear-gradient(145deg, #a78bfa, #7c3aed);"></div>
+        <span class="icon-label">Proof of Work</span>
+    </div>
 
-        <div class="desktop-icon draggable" style="top: 550px; right: 15%;">
-            <div class="file-icon snail-icon">
-                <img src="https://em-content.zobj.net/source/apple/354/snail_1f40c.png" alt="Snail" style="width:100px; height:100px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); transform: scaleX(-1);">
-            </div>
-            <span class="icon-label">404 Embassy //<br>newsletter</span>
+    <div class="desktop-icon" style="top: 60%; right: 20%;">
+        <div class="snail-icon">
+            <img src="https://em-content.zobj.net/source/apple/354/snail_1f40c.png" alt="Snail" style="transform: scaleX(-1);">
         </div>
+        <span class="icon-label">404 Embassy //<br>newsletter</span>
     </div>
 </main>
 
@@ -248,56 +500,26 @@
     </div>
 </div>
 
-   <script>
-   function updateClock() {
-     const now = new Date();
-     const h = String(now.getHours()).padStart(2, '0');
-     const m = String(now.getMinutes()).padStart(2, '0');
-     const s = String(now.getSeconds()).padStart(2, '0');
-     document.getElementById('clock').textContent = `${h}:${m}:${s}`;
-   }
-   updateClock();
-   setInterval(updateClock, 1000);
+<script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour12: false });
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
     </script>
     <script>
-    // Make eyes follow cursor
+    const pupils = document.querySelectorAll('.eye .pupil');
     document.addEventListener('mousemove', (e) => {
-      const svg = document.querySelector('.nav-center svg');
-      if (!svg) return;
-      
-      const rect = svg.getBoundingClientRect();
-      const svgX = rect.left + rect.width / 2;
-      const svgY = rect.top + rect.height / 2;
-      
-      // Calculate angle from center of SVG to mouse
-      const angle = Math.atan2(e.clientY - svgY, e.clientX - svgX);
-      
-      // Maximum movement distance for pupils (in SVG coordinates)
-      const maxMove = 3; // Adjust this value to change how far pupils can move
-      
-      // Calculate pupil offset
-      const offsetX = Math.cos(angle) * maxMove;
-      const offsetY = Math.sin(angle) * maxMove;
-      
-      // Apply to both pupils
-      const leftPupil = document.getElementById('leftPupil');
-      const rightPupil = document.getElementById('rightPupil');
-      const leftHighlight = document.getElementById('leftHighlight');
-      const rightHighlight = document.getElementById('rightHighlight');
-      
-      if (leftPupil && rightPupil) {
-        // Move pupils
-        leftPupil.setAttribute('cx', 30 + offsetX);
-        leftPupil.setAttribute('cy', 30 + offsetY);
-        rightPupil.setAttribute('cx', 90 + offsetX);
-        rightPupil.setAttribute('cy', 30 + offsetY);
-        
-        // Move highlights to stay relative to pupils
-        leftHighlight.setAttribute('cx', 34 + offsetX);
-        leftHighlight.setAttribute('cy', 25 + offsetY);
-        rightHighlight.setAttribute('cx', 94 + offsetX);
-        rightHighlight.setAttribute('cy', 25 + offsetY);
-      }
+      pupils.forEach(pupil => {
+        const eye = pupil.parentElement;
+        const rect = eye.getBoundingClientRect();
+        const eyeX = rect.left + rect.width / 2;
+        const eyeY = rect.top + rect.height / 2;
+        const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
+        const distance = Math.min(4, Math.hypot(e.clientX - eyeX, e.clientY - eyeY) / 20);
+        pupil.style.transform = `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px)`;
+      });
     });
     </script>
  <script src="script.js"></script>
