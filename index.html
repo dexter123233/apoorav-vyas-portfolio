@@ -235,13 +235,26 @@
       font-weight: 600;
       cursor: pointer;
       text-align: center;
-      transition: all 0.2s;
+      transition: background-color 0.25s ease, color 0.25s ease;
       color: rgba(0,0,0,0.85);
+      text-decoration: none;
+      display: inline-block;
     }
 
     .book-btn:hover {
-      background: #111;
-      color: #fff;
+      background-color: #b3d8ff;
+      color: #000;
+    }
+
+    @keyframes intro-blink {
+      0%   { background-color: #ffffff; color: #000; }
+      100% { background-color: #b3d8ff; color: #000; }
+    }
+
+    @media (hover: hover) {
+      .book-btn:hover {
+        animation: intro-blink 1.8s ease-in-out infinite alternate;
+      }
     }
 
     .desktop-icon {
@@ -315,6 +328,32 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
 
+    .trash-icon {
+      position: relative;
+      cursor: not-allowed;
+    }
+
+    .trash-icon:hover {
+      animation: trash-shake 0.45s ease-in-out both;
+    }
+
+    .trash-icon .icon-label {
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .trash-icon:hover .icon-label {
+      opacity: 1;
+    }
+
+    @keyframes trash-shake {
+      0%, 100% { left: 0; top: 0; }
+      15%     { left: -4px; }
+      30%     { left: 3px; }
+      45%     { left: -3px; }
+      60%     { left: 2px; }
+    }
+
     .snail-icon {
       width: 80px;
       height: 80px;
@@ -370,11 +409,80 @@
       letter-spacing: 0.5px;
     }
 
+    .logo-marquee-wrapper {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 740px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 1.2rem 2rem;
+      z-index: 1000;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-marquee {
+      display: flex;
+      gap: 2rem;
+      animation: scroll-logos 80s linear infinite;
+      align-items: center;
+    }
+
+    .logo-marquee img {
+      height: 38px;
+      max-height: 38px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: all 0.2s ease;
+    }
+
+    .logo-marquee img:hover {
+      filter: none;
+      opacity: 2;
+    }
+
+    @keyframes scroll-logos {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .logo-fade {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      z-index: 1002;
+      pointer-events: none;
+    }
+
+    .left-fade {
+      left: 0;
+      background: linear-gradient(to right, rgba(24,24,24,0.2) 0%, rgba(24,24,24,0) 100%);
+    }
+
+    .right-fade {
+      right: 0;
+      background: linear-gradient(to left, rgba(24,24,24,0.2) 0%, rgba(24,24,24,0) 100%);
+    }
+
+    .sticky-card {
+      z-index: 20;
+    }
+
     @media (max-width: 768px) {
       nav { padding: 0 12px; font-size: 12px; }
       .gap-eyes-twitter, .gap-social, .gap-spotify-clock { display: none; }
       .sticky-card { left: 12px; right: 12px; width: auto; top: 60px; }
       .nav-center { display: none; }
+      .logo-marquee-wrapper, .dock-title { display: none; }
     }
   </style>
 </head>
@@ -485,20 +593,47 @@
         </div>
         <span class="icon-label">404 Embassy //<br>newsletter</span>
     </div>
+
+    <div class="desktop-icon trash-icon" style="top: 70%; left: 10%;">
+        <div class="folder-icon" style="background: linear-gradient(145deg, #374151, #1f2937);">
+            <span style="font-size: 32px;">🗑️</span>
+        </div>
+        <span class="icon-label">don't open 👀</span>
+    </div>
 </main>
 
-<div class="dock-container">
-    <div class="dock-title">Brag Shelf // Press • Partners • Clients</div>
-    <div class="dock">
-        <div class="dock-logo">Hacken</div>
-        <div class="dock-logo">Blockchain.com</div>
-        <div class="dock-logo">Rarimo</div>
-        <div class="dock-logo">BDC Consulting</div>
-        <div class="dock-logo">Invest</div>
-        <div class="dock-logo">The Block</div>
-        <div class="dock-logo">Binance</div>
+<div class="logo-marquee-wrapper">
+    <div class="logo-fade left-fade"></div>
+    <div class="logo-marquee">
+        <img alt="Hacken" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png">
+        <img alt="Blockchain.com" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png">
+        <img alt="Rarimo" src="https://freight.cargo.site/t/original/i/D2452309144229793612845302383717/rarimo.png">
+        <img alt="BDC Consulting" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png">
+        <img alt="Invest" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png">
+        <img alt="The Block" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png">
+        <img alt="CoinsPaid" src="https://freight.cargo.site/t/original/i/B2452412272062256515326989796453/coinspaid.png">
+        <img alt="Binance" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png">
+        <img alt="Rocket DAO" src="https://freight.cargo.site/t/original/i/U2452422819301775308016188621925/rocketDAO.png">
+        <img alt="EBRD" src="https://freight.cargo.site/t/original/i/B2452422819283328563942479070309/EBRD.png">
+        <img alt="Cointelegraph" src="https://freight.cargo.site/t/original/i/M1653668736016096960125178446949/Group-1229.png">
+        <img alt="John Smith Trust" src="https://freight.cargo.site/t/original/i/C1653629271457654035532061312101/Group-1231.png">
+        <img alt="Hacken" src="https://freight.cargo.site/m/E2452302379864082015773853451365/hacken.png">
+        <img alt="Blockchain.com" src="https://freight.cargo.site/m/T2452302379845635271700143899749/Blockchain.com.png">
+        <img alt="Rarimo" src="https://freight.cargo.site/t/original/i/F2452302379882528759847563002981/rarimo.png">
+        <img alt="BDC Consulting" src="https://freight.cargo.site/m/P2452302379827188527626434348133/BDC.png">
+        <img alt="Invest" src="https://freight.cargo.site/t/original/i/U1653668735979203471977759343717/Group-1227.png">
+        <img alt="The Block" src="https://freight.cargo.site/m/N2356215770038189207213066912869/the_block.png">
+        <img alt="CoinsPaid" src="https://freight.cargo.site/t/original/i/B2452412272062256515326989796453/coinspaid.png">
+        <img alt="Binance" src="https://freight.cargo.site/m/C2356215770019742463139357361253/binance.png">
+        <img alt="Rocket DAO" src="https://freight.cargo.site/t/original/i/U2452422819301775308016188621925/rocketDAO.png">
+        <img alt="EBRD" src="https://freight.cargo.site/t/original/i/B2452422819283328563942479070309/EBRD.png">
+        <img alt="Cointelegraph" src="https://freight.cargo.site/t/original/i/M1653668736016096960125178446949/Group-1229.png">
+        <img alt="John Smith Trust" src="https://freight.cargo.site/t/original/i/C1653629271457654035532061312101/Group-1231.png">
     </div>
+    <div class="logo-fade right-fade"></div>
 </div>
+
+<div class="dock-title">Brag Shelf // Press • Partners • Clients</div>
 
 <script>
     function updateClock() {
