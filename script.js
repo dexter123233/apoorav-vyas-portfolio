@@ -158,28 +158,28 @@ document.addEventListener('DOMContentLoaded', function() {
     desktopIcons.forEach(function(icon) {
         let isDragging = false;
         let startX, startY, initialX, initialY;
+        let hasMoved = false;
         
         function onMouseDown(e) {
-            // Don't drag if clicking on links
             if (e.target.closest('a')) return;
             
             isDragging = true;
+            hasMoved = false;
             icon.classList.add('dragging');
             
-            // Get initial position
             const rect = icon.getBoundingClientRect();
             initialX = rect.left;
             initialY = rect.top;
             startX = e.clientX || e.touches?.[0]?.clientX;
             startY = e.clientY || e.touches?.[0]?.clientY;
             
-            // Convert any right positioning to left
             icon.style.left = initialX + 'px';
             icon.style.top = initialY + 'px';
             icon.style.right = 'auto';
             icon.style.transform = 'none';
             
             e.preventDefault();
+            e.stopPropagation();
         }
         
         function onMouseMove(e) {
@@ -188,11 +188,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const clientX = e.clientX || e.touches?.[0]?.clientX;
             const clientY = e.clientY || e.touches?.[0]?.clientY;
             
-            const deltaX = clientX - startX;
-            const deltaY = clientY - startY;
+            const deltaX = Math.abs(clientX - startX);
+            const deltaY = Math.abs(clientY - startY);
             
-            icon.style.left = (initialX + deltaX) + 'px';
-            icon.style.top = (initialY + deltaY) + 'px';
+            if (deltaX > 3 || deltaY > 3) {
+                hasMoved = true;
+            }
+            
+            icon.style.left = (initialX + (clientX - startX)) + 'px';
+            icon.style.top = (initialY + (clientY - startY)) + 'px';
             
             e.preventDefault();
         }
@@ -203,26 +207,20 @@ document.addEventListener('DOMContentLoaded', function() {
             isDragging = false;
             icon.classList.remove('dragging');
             
-            // Check if it was a click (not a drag)
-            const rect = icon.getBoundingClientRect();
-            const movedX = Math.abs(rect.left - initialX);
-            const movedY = Math.abs(rect.top - initialY);
-            
-            // If barely moved, treat as click
-            if (movedX < 5 && movedY < 5) {
+            if (!hasMoved) {
                 const windowId = icon.dataset.window;
                 if (windowId) {
                     openWindow(windowId);
                 }
             }
+            
+            hasMoved = false;
         }
         
-        // Mouse events
         icon.addEventListener('mousedown', onMouseDown);
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('mouseup', onMouseUp);
         
-        // Touch events
         icon.addEventListener('touchstart', onMouseDown, { passive: false });
         document.addEventListener('touchmove', onMouseMove, { passive: false });
         document.addEventListener('touchend', onMouseUp);
