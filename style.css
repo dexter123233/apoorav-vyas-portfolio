@@ -85,7 +85,7 @@ body, html {
 /* Letterboxd Eyes Styles */
 .letterboxd-eyes {
     position: relative;
-    width: 48px; /* 20px + 8px gap + 20px */
+    width: 40px;
     height: 20px;
 }
 
@@ -99,11 +99,11 @@ body, html {
 }
 
 .eye:first-child {
-    right: calc(50% - 4px); /* Positions right edge 4px left of center */
+    right: 50%;
 }
 
 .eye:last-child {
-    left: calc(50% + 4px); /* Positions left edge 4px right of center */
+    left: 50%;
 }
 
 .pupil {
