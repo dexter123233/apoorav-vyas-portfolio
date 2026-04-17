@@ -220,9 +220,19 @@ body, html {
     justify-content: center;
     width: 100px;
     cursor: grab;
+    user-select: none;
+    z-index: 15;
 }
 .desktop-icon:active {
     cursor: grabbing;
+}
+
+.folder-link {
+    text-decoration: none;
+}
+
+.desktop-icon:hover {
+    transform: scale(1.05);
 }
 
 .file-icon {
@@ -331,7 +341,7 @@ body, html {
 }
 
 .dock-logo {
-    background: rgba(255,255,255,0.8);
+    background: rgba(255, 255, 255, 0.8);
     color: #1a1a1a;
     height: 32px;
     padding: 0 12px;
@@ -342,4 +352,161 @@ body, html {
     font-size: 12px;
     border-radius: 4px;
     text-transform: uppercase;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menubar {
+        padding: 0 12px;
+        font-size: 12px;
+    }
+    
+    .menu-left, .menu-right {
+        gap: 12px;
+    }
+    
+    .desktop {
+        height: calc(100vh - 44px);
+        margin-top: 44px;
+    }
+    
+    .sticky-card {
+        left: 16px;
+        right: 16px;
+        width: auto;
+        top: 80px;
+        height: auto;
+        min-height: 300px;
+    }
+    
+    .sticky-card h1 {
+        font-size: 18px;
+    }
+    
+    .sticky-card .subtitle {
+        font-size: 13px;
+    }
+    
+    .achievements li {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+    
+    .dock {
+        padding: 8px 16px;
+        gap: 16px;
+    }
+    
+    .dock-logo {
+        height: 28px;
+        padding: 0 8px;
+        font-size: 10px;
+    }
+    
+    .dock-title {
+        display: none;
+    }
+    
+    .desktop-icon {
+        transform: scale(0.75);
+    }
+    
+    .logo-marquee-wrapper {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .menubar {
+        padding: 0 8px;
+        font-size: 11px;
+        height: 40px;
+    }
+    
+    .menu-left, .menu-right {
+        gap: 8px;
+    }
+    
+    .logo {
+        font-size: 12px;
+    }
+    
+    .desktop {
+        margin-top: 40px;
+        height: calc(100vh - 40px);
+    }
+    
+    .sticky-card {
+        left: 8px;
+        right: 8px;
+        padding: 16px;
+        min-height: 280px;
+        top: 60px;
+    }
+    
+    .sticky-card h1 {
+        font-size: 16px;
+    }
+    
+    .book-btn {
+        font-size: 13px;
+        padding: 10px;
+    }
+    
+    .desktop-icon {
+        transform: scale(0.6);
+    }
+    
+    .letterboxd-eyes {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sticky-card {
+        left: 24px;
+        width: 320px;
+    }
+    
+    .desktop-icon {
+        transform: scale(0.85);
+    }
+}
+
+@media (min-width: 1440px) {
+    .sticky-card {
+        left: 60px;
+        width: 420px;
+        padding: 32px;
+    }
+    
+    .sticky-card h1 {
+        font-size: 24px;
+    }
+    
+    .desktop-icon {
+        transform: scale(1.1);
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .menubar {
+        height: 36px;
+    }
+    
+    .desktop {
+        margin-top: 36px;
+        height: calc(100vh - 36px);
+    }
+    
+    .sticky-card {
+        top: 50px;
+        width: 280px;
+        min-height: auto;
+        height: auto;
+    }
+    
+    .dock-container {
+        bottom: 10px;
+    }
 }
